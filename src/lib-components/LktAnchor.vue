@@ -1,48 +1,59 @@
+<script lang="ts">
+export default {name: "LktAnchor", inheritAttrs: false}
+</script>
+
+<script lang="ts" setup>
+import {useRouter} from "vue-router";
+import {computed} from "vue";
+
+const props = defineProps({
+    to: {type: [String, Object], default: undefined},
+    target: {type: String, default: ''},
+    href: {type: String, default: ''},
+    route: {type: String, default: ''},
+    palette: {type: String, default: ''},
+    isBack: {type: Boolean, default: false},
+    isVanilla: {type: Boolean, default: false},
+});
+
+const emit = defineEmits(['click']);
+
+const router = useRouter();
+
+const classes = computed(() => {
+        const r = ['lkt-anchor'];
+
+        if (props.palette) r.push(`lkt-anchor--${props.palette}`);
+
+        return r.join(' ');
+    });
+
+
+const onClick = (e: Event) => {
+
+    if (props.isBack) {
+        e.preventDefault();
+        e.stopPropagation();
+        router.back();
+        return;
+    }
+
+    if (!props.isVanilla) {
+        e.preventDefault();
+        e.stopPropagation();
+        router.push(props.to);
+        return;
+    }
+
+    emit('click', e);
+}
+</script>
+
 <template>
-    <a data-lkt="anchor"
+    <a v-bind:class="classes"
        v-bind:href="href"
-       v-bind:data-state="state"
        v-bind:target="target"
        v-on:click="onClick">
         <slot></slot>
     </a>
 </template>
-
-<script lang="ts">
-import {isObject} from "lkt-tools";
-
-export default {
-    name: "LktAnchor",
-    emits: ['click'],
-    props: {
-        to: {type: [String, Object], default: undefined},
-        vanilla: {type: Boolean, default: false},
-        state: {type: String, default: ''},
-        target: {type: String, default: ''},
-        href: {type: String, default: ''},
-        route: {type: String, default: ''}
-    },
-    computed: {
-        computedHref() {
-            if (isObject(this.to)) {
-                if (this.to.name) {
-                    return '';
-                }
-            }
-            return this.to;
-        }
-    },
-    methods: {
-        onClick(e: Event) {
-            if (!this.vanilla) {
-                e.preventDefault();
-                e.stopPropagation();
-                this.$root.$router.push(this.to);
-                return;
-            }
-
-            this.$emit('click', e);
-        }
-    }
-}
-</script>

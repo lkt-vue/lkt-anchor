@@ -1,48 +1,44 @@
-import { isObject as i } from "lkt-tools";
-import { openBlock as c, createElementBlock as l, renderSlot as f } from "vue";
-const h = {
-  name: "LktAnchor",
-  emits: ["click"],
+import { defineComponent as c, computed as i, openBlock as p, createElementBlock as f, normalizeClass as u, renderSlot as d } from "vue";
+import { useRouter as h } from "vue-router";
+const m = ["href", "target"], k = { name: "LktAnchor", inheritAttrs: !1 }, g = /* @__PURE__ */ c({
+  ...k,
   props: {
     to: { type: [String, Object], default: void 0 },
-    vanilla: { type: Boolean, default: !1 },
-    state: { type: String, default: "" },
-    target: { type: String, default: "" }
+    target: { type: String, default: "" },
+    href: { type: String, default: "" },
+    route: { type: String, default: "" },
+    palette: { type: String, default: "" },
+    isBack: { type: Boolean, default: !1 },
+    isVanilla: { type: Boolean, default: !1 }
   },
-  computed: {
-    href() {
-      return i(this.to) && this.to.name ? "" : this.to;
-    }
-  },
-  methods: {
-    onClick(t) {
-      if (!this.vanilla) {
-        t.preventDefault(), t.stopPropagation(), this.$root.$router.push(this.to);
+  emits: ["click"],
+  setup(e, { emit: a }) {
+    const o = e, r = a, n = h(), l = i(() => {
+      const t = ["lkt-anchor"];
+      return o.palette && t.push(`lkt-anchor--${o.palette}`), t.join(" ");
+    }), s = (t) => {
+      if (o.isBack) {
+        t.preventDefault(), t.stopPropagation(), n.back();
         return;
       }
-      this.$emit("click", t);
-    }
+      if (!o.isVanilla) {
+        t.preventDefault(), t.stopPropagation(), n.push(o.to);
+        return;
+      }
+      r("click", t);
+    };
+    return (t, y) => (p(), f("a", {
+      class: u(l.value),
+      href: e.href,
+      target: e.target,
+      onClick: s
+    }, [
+      d(t.$slots, "default")
+    ], 10, m));
   }
-}, d = (t, e) => {
-  const o = t.__vccOpts || t;
-  for (const [a, n] of e)
-    o[a] = n;
-  return o;
-}, u = ["href", "data-state", "target"];
-function p(t, e, o, a, n, r) {
-  return c(), l("a", {
-    "data-lkt": "anchor",
-    href: r.href,
-    "data-state": o.state,
-    target: o.target,
-    onClick: e[0] || (e[0] = (...s) => r.onClick && r.onClick(...s))
-  }, [
-    f(t.$slots, "default")
-  ], 8, u);
-}
-const k = /* @__PURE__ */ d(h, [["render", p]]), _ = {
-  install: (t, e) => {
-    t.component("lkt-anchor", k);
+}), _ = {
+  install: (e, a) => {
+    e.component("lkt-anchor", g);
   }
 };
 export {

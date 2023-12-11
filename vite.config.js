@@ -19,11 +19,10 @@ export default {
         outDir,
         minify: true,
         rollupOptions: {
-            external: [ 'vue', 'lkt-tools', 'lkt-events' ],
+            external: [ 'vue', 'lkt-events', 'vue-router' ],
             output: {
                 globals: {
                     vue: 'Vue',
-                    "lkt-tools": 'LktTools',
                     "lkt-events": 'LktEvents'
                 },
                 sourcemapExcludeSources: true
