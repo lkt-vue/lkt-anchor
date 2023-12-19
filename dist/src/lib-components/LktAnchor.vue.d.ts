@@ -28,6 +28,10 @@ declare const _default: {
             type: BooleanConstructor;
             default: boolean;
         };
+        onClick: {
+            type: FunctionConstructor[];
+            default: any;
+        };
     }>> & {
         onClick?: (...args: any[]) => any;
     }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "click"[], import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
@@ -59,10 +63,15 @@ declare const _default: {
             type: BooleanConstructor;
             default: boolean;
         };
+        onClick: {
+            type: FunctionConstructor[];
+            default: any;
+        };
     }>> & {
         onClick?: (...args: any[]) => any;
     }, {
         target: string;
+        onClick: Function;
         href: string;
         to: string | Record<string, any>;
         route: string;
@@ -105,10 +114,15 @@ declare const _default: {
             type: BooleanConstructor;
             default: boolean;
         };
+        onClick: {
+            type: FunctionConstructor[];
+            default: any;
+        };
     }>> & {
         onClick?: (...args: any[]) => any;
     }, {}, {}, {}, {}, {
         target: string;
+        onClick: Function;
         href: string;
         to: string | Record<string, any>;
         route: string;
@@ -148,10 +162,15 @@ declare const _default: {
         type: BooleanConstructor;
         default: boolean;
     };
+    onClick: {
+        type: FunctionConstructor[];
+        default: any;
+    };
 }>> & {
     onClick?: (...args: any[]) => any;
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "click"[], "click", {
     target: string;
+    onClick: Function;
     href: string;
     to: string | Record<string, any>;
     route: string;

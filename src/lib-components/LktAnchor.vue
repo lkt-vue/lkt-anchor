@@ -14,6 +14,7 @@ const props = defineProps({
     palette: {type: String, default: ''},
     isBack: {type: Boolean, default: false},
     isVanilla: {type: Boolean, default: false},
+    onClick: {type: [Function, undefined], default: undefined},
 });
 
 const emit = defineEmits(['click']);
@@ -36,6 +37,12 @@ const onClick = (e: Event) => {
         e.stopPropagation();
         router.back();
         return;
+    }
+
+    if (typeof props.onClick === 'function') {
+        e.preventDefault();
+        e.stopPropagation();
+        return props.onClick();
     }
 
     if (!props.isVanilla) {
