@@ -1,10 +1,15 @@
 /* eslint-disable import/prefer-default-export */
 import {default as anchor} from "./lib-components/LktAnchor.vue";
 import {App} from "vue";
+import LktModalConfirm from "lkt-modal-confirm";
 
 const LktAnchor = {
     install: (app: App, options: any) => {
-        app.component('lkt-anchor', anchor);
+        // Register plugin components
+        if (app.component('lkt-anchor') === undefined) app.component('lkt-anchor', anchor);
+
+        // Register additional components
+        if (app.component('lkt-modal-confirm') === undefined)  app.use(LktModalConfirm);
     },
 };
 

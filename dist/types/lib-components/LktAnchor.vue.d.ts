@@ -32,6 +32,19 @@ declare const _default: {
             type: FunctionConstructor[];
             default: any;
         };
+        confirmModal: {
+            type: StringConstructor;
+            default: string;
+        };
+        confirmModalKey: {
+            type: StringConstructor;
+            default: string;
+        };
+        confirmData: {
+            type: ObjectConstructor;
+            required: false;
+            default: () => {};
+        };
     }>> & {
         onClick?: (...args: any[]) => any;
     }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "click"[], import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
@@ -67,6 +80,19 @@ declare const _default: {
             type: FunctionConstructor[];
             default: any;
         };
+        confirmModal: {
+            type: StringConstructor;
+            default: string;
+        };
+        confirmModalKey: {
+            type: StringConstructor;
+            default: string;
+        };
+        confirmData: {
+            type: ObjectConstructor;
+            required: false;
+            default: () => {};
+        };
     }>> & {
         onClick?: (...args: any[]) => any;
     }, {
@@ -78,6 +104,9 @@ declare const _default: {
         palette: string;
         isBack: boolean;
         isVanilla: boolean;
+        confirmModal: string;
+        confirmModalKey: string;
+        confirmData: Record<string, any>;
     }, true, {}, {}, {
         P: {};
         B: {};
@@ -118,6 +147,19 @@ declare const _default: {
             type: FunctionConstructor[];
             default: any;
         };
+        confirmModal: {
+            type: StringConstructor;
+            default: string;
+        };
+        confirmModalKey: {
+            type: StringConstructor;
+            default: string;
+        };
+        confirmData: {
+            type: ObjectConstructor;
+            required: false;
+            default: () => {};
+        };
     }>> & {
         onClick?: (...args: any[]) => any;
     }, {}, {}, {}, {}, {
@@ -129,6 +171,9 @@ declare const _default: {
         palette: string;
         isBack: boolean;
         isVanilla: boolean;
+        confirmModal: string;
+        confirmModalKey: string;
+        confirmData: Record<string, any>;
     }>;
     __isFragment?: never;
     __isTeleport?: never;
@@ -166,6 +211,19 @@ declare const _default: {
         type: FunctionConstructor[];
         default: any;
     };
+    confirmModal: {
+        type: StringConstructor;
+        default: string;
+    };
+    confirmModalKey: {
+        type: StringConstructor;
+        default: string;
+    };
+    confirmData: {
+        type: ObjectConstructor;
+        required: false;
+        default: () => {};
+    };
 }>> & {
     onClick?: (...args: any[]) => any;
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "click"[], "click", {
@@ -177,6 +235,9 @@ declare const _default: {
     palette: string;
     isBack: boolean;
     isVanilla: boolean;
+    confirmModal: string;
+    confirmModalKey: string;
+    confirmData: Record<string, any>;
 }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
     $slots: {
         default: (_: {}) => any;

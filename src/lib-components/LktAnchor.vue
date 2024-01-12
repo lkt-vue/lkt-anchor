@@ -5,6 +5,7 @@ export default {name: "LktAnchor", inheritAttrs: false}
 <script lang="ts" setup>
 import {useRouter} from "vue-router";
 import {computed} from "vue";
+import {openConfirm} from "lkt-modal-confirm";
 
 const props = defineProps({
     to: {type: [String, Object], default: undefined},
@@ -15,6 +16,9 @@ const props = defineProps({
     isBack: {type: Boolean, default: false},
     isVanilla: {type: Boolean, default: false},
     onClick: {type: [Function, undefined], default: undefined},
+    confirmModal: {type: String, default: ''},
+    confirmModalKey: {type: String, default: '_'},
+    confirmData: {type: Object, required: false, default: () => ({})},
 });
 
 const emit = defineEmits(['click']);
@@ -32,27 +36,53 @@ const classes = computed(() => {
 
 const onClick = (e: Event) => {
 
-    if (props.isBack) {
-        e.preventDefault();
-        e.stopPropagation();
-        router.back();
-        return;
+    const internalClickEvent = () => {
+        if (props.isBack) {
+            e.preventDefault();
+            e.stopPropagation();
+            router.back();
+            return;
+        }
+
+        if (typeof props.onClick === 'function') {
+            e.preventDefault();
+            e.stopPropagation();
+            return props.onClick();
+        }
+
+        if (!props.isVanilla) {
+            e.preventDefault();
+            e.stopPropagation();
+            router.push(props.to);
+            return;
+        }
+
+        if (!props.href || props.href === '#') {
+            e.preventDefault();
+        }
+
+        emit('click', e);
     }
 
-    if (typeof props.onClick === 'function') {
-        e.preventDefault();
-        e.stopPropagation();
-        return props.onClick();
+    if (props.confirmModal) {
+        let data = typeof props.confirmData === 'object' ? JSON.parse(JSON.stringify(props.confirmData)) : {};
+
+        if (typeof data.onConfirm === 'function') {
+            let externalConfirmAction = data.onConfirm.bind({});
+            data.onConfirm = () => {
+                externalConfirmAction();
+                internalClickEvent();
+            }
+        } else {
+            data.onConfirm = () => {
+                internalClickEvent();
+            }
+        }
+        return openConfirm(props.confirmModal, props.confirmModalKey, data);
     }
 
-    if (!props.isVanilla) {
-        e.preventDefault();
-        e.stopPropagation();
-        router.push(props.to);
-        return;
-    }
+    internalClickEvent();
 
-    emit('click', e);
 }
 </script>
 

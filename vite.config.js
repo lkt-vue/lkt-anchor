@@ -19,7 +19,12 @@ export default {
         outDir,
         minify: true,
         rollupOptions: {
-            external: [ 'vue', 'lkt-events', 'vue-router' ],
+            external: [
+                'vue',
+                'lkt-events',
+                'vue-router',
+                'lkt-modal-confirm'
+            ],
             output: {
                 globals: {
                     vue: 'Vue',
