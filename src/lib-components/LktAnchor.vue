@@ -13,6 +13,8 @@ const props = defineProps({
     href: {type: String, default: ''},
     route: {type: String, default: ''},
     palette: {type: String, default: ''},
+    download: {type: Boolean, default: false},
+    downloadFileName: {type: String, default: ''},
     isBack: {type: Boolean, default: false},
     isVanilla: {type: Boolean, default: false},
     onClick: {type: [Function, undefined], default: undefined},
@@ -26,12 +28,12 @@ const emit = defineEmits(['click']);
 const router = useRouter();
 
 const classes = computed(() => {
-        const r = ['lkt-anchor'];
+    const r = ['lkt-anchor'];
 
-        if (props.palette) r.push(`lkt-anchor--${props.palette}`);
+    if (props.palette) r.push(`lkt-anchor--${props.palette}`);
 
-        return r.join(' ');
-    });
+    return r.join(' ');
+});
 
 
 const onClick = (e: Event) => {
@@ -50,15 +52,15 @@ const onClick = (e: Event) => {
             return props.onClick();
         }
 
-        if (!props.isVanilla) {
+        if (!props.href || props.href === '#') {
+            e.preventDefault();
+        }
+
+        if (!props.isVanilla && typeof props.to !== 'undefined') {
             e.preventDefault();
             e.stopPropagation();
             router.push(props.to);
             return;
-        }
-
-        if (!props.href || props.href === '#') {
-            e.preventDefault();
         }
 
         emit('click', e);
@@ -90,6 +92,7 @@ const onClick = (e: Event) => {
     <a v-bind:class="classes"
        v-bind:href="href"
        v-bind:target="target"
+       v-bind:download="downloadFileName"
        v-on:click="onClick">
         <slot></slot>
     </a>

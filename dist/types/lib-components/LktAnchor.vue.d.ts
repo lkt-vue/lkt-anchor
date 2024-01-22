@@ -20,6 +20,14 @@ declare const _default: {
             type: StringConstructor;
             default: string;
         };
+        download: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        downloadFileName: {
+            type: StringConstructor;
+            default: string;
+        };
         isBack: {
             type: BooleanConstructor;
             default: boolean;
@@ -68,6 +76,14 @@ declare const _default: {
             type: StringConstructor;
             default: string;
         };
+        download: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        downloadFileName: {
+            type: StringConstructor;
+            default: string;
+        };
         isBack: {
             type: BooleanConstructor;
             default: boolean;
@@ -98,10 +114,12 @@ declare const _default: {
     }, {
         target: string;
         onClick: Function;
+        download: boolean;
         href: string;
         to: string | Record<string, any>;
         route: string;
         palette: string;
+        downloadFileName: string;
         isBack: boolean;
         isVanilla: boolean;
         confirmModal: string;
@@ -135,6 +153,14 @@ declare const _default: {
             type: StringConstructor;
             default: string;
         };
+        download: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        downloadFileName: {
+            type: StringConstructor;
+            default: string;
+        };
         isBack: {
             type: BooleanConstructor;
             default: boolean;
@@ -165,10 +191,12 @@ declare const _default: {
     }, {}, {}, {}, {}, {
         target: string;
         onClick: Function;
+        download: boolean;
         href: string;
         to: string | Record<string, any>;
         route: string;
         palette: string;
+        downloadFileName: string;
         isBack: boolean;
         isVanilla: boolean;
         confirmModal: string;
@@ -196,6 +224,14 @@ declare const _default: {
         default: string;
     };
     palette: {
+        type: StringConstructor;
+        default: string;
+    };
+    download: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    downloadFileName: {
         type: StringConstructor;
         default: string;
     };
@@ -229,10 +265,12 @@ declare const _default: {
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "click"[], "click", {
     target: string;
     onClick: Function;
+    download: boolean;
     href: string;
     to: string | Record<string, any>;
     route: string;
     palette: string;
+    downloadFileName: string;
     isBack: boolean;
     isVanilla: boolean;
     confirmModal: string;
