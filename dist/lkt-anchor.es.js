@@ -1,72 +1,73 @@
-import { defineComponent as s, computed as u, openBlock as p, createElementBlock as m, normalizeClass as k, renderSlot as y } from "vue";
-import { useRouter as h } from "vue-router";
-import g, { openConfirm as C } from "lkt-modal-confirm";
-const v = ["href", "target", "download"], S = { name: "LktAnchor", inheritAttrs: !1 }, B = /* @__PURE__ */ s({
-  ...S,
+import { defineComponent as d, computed as u, openBlock as m, createElementBlock as p, normalizeClass as k, renderSlot as h } from "vue";
+import { useRouter as C } from "vue-router";
+import y, { openConfirm as v } from "lkt-modal-confirm";
+const g = ["href", "target", "download"], B = /* @__PURE__ */ d({
+  __name: "LktAnchor",
   props: {
-    to: { type: [String, Object], default: void 0 },
-    target: { type: String, default: "" },
-    href: { type: String, default: "" },
-    route: { type: String, default: "" },
-    palette: { type: String, default: "" },
+    to: { default: "" },
+    class: { default: "" },
+    target: { default: "" },
+    href: { default: "" },
+    route: { default: "" },
+    palette: { default: "" },
     download: { type: Boolean, default: !1 },
-    downloadFileName: { type: String, default: "" },
+    downloadFileName: { default: "" },
     isBack: { type: Boolean, default: !1 },
     isVanilla: { type: Boolean, default: !1 },
-    onClick: { type: [Function, void 0], default: void 0 },
-    confirmModal: { type: String, default: "" },
-    confirmModalKey: { type: String, default: "_" },
-    confirmData: { type: Object, required: !1, default: () => ({}) }
+    onClick: { type: Function, default: void 0 },
+    confirmModal: { default: "" },
+    confirmModalKey: { default: "_" },
+    confirmData: { default: () => ({}) }
   },
   emits: ["click"],
-  setup(o, { emit: r }) {
-    const t = o, l = r, i = h(), f = u(() => {
-      const e = ["lkt-anchor"];
-      return t.palette && e.push(`lkt-anchor--${t.palette}`), e.join(" ");
-    }), c = (e) => {
+  setup(e, { emit: l }) {
+    const o = e, i = l, r = C(), f = u(() => {
+      const t = ["lkt-anchor"];
+      return o.class && t.push(o.class), o.palette && t.push(`lkt-anchor--${o.palette}`), t.join(" ");
+    }), c = (t) => {
       const a = () => {
-        if (t.isBack) {
-          e.preventDefault(), e.stopPropagation(), i.back();
+        if (o.isBack) {
+          t.preventDefault(), t.stopPropagation(), r.back();
           return;
         }
-        if (typeof t.onClick == "function")
-          return e.preventDefault(), e.stopPropagation(), t.onClick();
-        if ((!t.href || t.href === "#") && e.preventDefault(), !t.isVanilla && typeof t.to < "u") {
-          e.preventDefault(), e.stopPropagation(), i.push(t.to);
+        if (typeof o.onClick == "function")
+          return t.preventDefault(), t.stopPropagation(), o.onClick();
+        if ((!o.href || o.href === "#") && t.preventDefault(), !o.isVanilla && typeof o.to < "u") {
+          t.preventDefault(), t.stopPropagation(), r.push(o.to);
           return;
         }
-        l("click", e);
+        i("click", t);
       };
-      if (t.confirmModal) {
-        let n = typeof t.confirmData == "object" ? JSON.parse(JSON.stringify(t.confirmData)) : {};
+      if (o.confirmModal) {
+        let n = typeof o.confirmData == "object" ? JSON.parse(JSON.stringify(o.confirmData)) : {};
         if (typeof n.onConfirm == "function") {
-          let d = n.onConfirm.bind({});
+          let s = n.onConfirm.bind({});
           n.onConfirm = () => {
-            d(), a();
+            s(), a();
           };
         } else
           n.onConfirm = () => {
             a();
           };
-        return C(t.confirmModal, t.confirmModalKey, n);
+        return v(o.confirmModal, o.confirmModalKey, n);
       }
       a();
     };
-    return (e, a) => (p(), m("a", {
+    return (t, a) => (m(), p("a", {
       class: k(f.value),
-      href: o.href,
-      target: o.target,
-      download: o.downloadFileName,
+      href: t.href,
+      target: t.target,
+      download: t.downloadFileName,
       onClick: c
     }, [
-      y(e.$slots, "default")
-    ], 10, v));
+      h(t.$slots, "default")
+    ], 10, g));
   }
-}), w = {
-  install: (o, r) => {
-    o.component("lkt-anchor") === void 0 && o.component("lkt-anchor", B), o.component("lkt-modal-confirm") === void 0 && o.use(g);
+}), _ = {
+  install: (e, l) => {
+    e.component("lkt-anchor") === void 0 && e.component("lkt-anchor", B), e.component("lkt-modal-confirm") === void 0 && e.use(y);
   }
 };
 export {
-  w as default
+  _ as default
 };

@@ -1,5 +1,3 @@
-import { App } from "vue";
-declare const LktAnchor: {
-    install: (app: App, options: any) => void;
-};
+import { Plugin } from "vue";
+declare const LktAnchor: Plugin;
 export default LktAnchor;

@@ -1,26 +1,39 @@
-<script lang="ts">
-export default {name: "LktAnchor", inheritAttrs: false}
-</script>
-
 <script lang="ts" setup>
-import {useRouter} from "vue-router";
+import {RouteLocationRaw, useRouter} from "vue-router";
 import {computed} from "vue";
+import {LktObject} from "lkt-ts-interfaces";
 import {openConfirm} from "lkt-modal-confirm";
 
-const props = defineProps({
-    to: {type: [String, Object], default: undefined},
-    target: {type: String, default: ''},
-    href: {type: String, default: ''},
-    route: {type: String, default: ''},
-    palette: {type: String, default: ''},
-    download: {type: Boolean, default: false},
-    downloadFileName: {type: String, default: ''},
-    isBack: {type: Boolean, default: false},
-    isVanilla: {type: Boolean, default: false},
-    onClick: {type: [Function, undefined], default: undefined},
-    confirmModal: {type: String, default: ''},
-    confirmModalKey: {type: String, default: '_'},
-    confirmData: {type: Object, required: false, default: () => ({})},
+const props = withDefaults(defineProps<{
+    to?: RouteLocationRaw
+    class?: string
+    target?: string
+    href?: string
+    route?: string
+    palette?: string
+    download?: boolean
+    downloadFileName?: string
+    isBack?: boolean
+    isVanilla?: boolean
+    onClick?: Function|undefined
+    confirmModal?: string
+    confirmModalKey?: string
+    confirmData?: LktObject
+}>(), {
+    to: '',
+    class: '',
+    target: '',
+    href: '',
+    route: '',
+    palette: '',
+    download: false,
+    downloadFileName: '',
+    isBack: false,
+    isVanilla: false,
+    onClick: undefined,
+    confirmModal: '',
+    confirmModalKey: '_',
+    confirmData: () => ({}),
 });
 
 const emit = defineEmits(['click']);
@@ -30,6 +43,7 @@ const router = useRouter();
 const classes = computed(() => {
     const r = ['lkt-anchor'];
 
+    if (props.class) r.push(props.class);
     if (props.palette) r.push(`lkt-anchor--${props.palette}`);
 
     return r.join(' ');

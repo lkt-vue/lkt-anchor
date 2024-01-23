@@ -1,273 +1,76 @@
-declare const _default: {
-    new (...args: any[]): import("vue").CreateComponentPublicInstance<Readonly<import("vue").ExtractPropTypes<{
-        to: {
-            type: (ObjectConstructor | StringConstructor)[];
-            default: any;
-        };
-        target: {
-            type: StringConstructor;
-            default: string;
-        };
-        href: {
-            type: StringConstructor;
-            default: string;
-        };
-        route: {
-            type: StringConstructor;
-            default: string;
-        };
-        palette: {
-            type: StringConstructor;
-            default: string;
-        };
-        download: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        downloadFileName: {
-            type: StringConstructor;
-            default: string;
-        };
-        isBack: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        isVanilla: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        onClick: {
-            type: FunctionConstructor[];
-            default: any;
-        };
-        confirmModal: {
-            type: StringConstructor;
-            default: string;
-        };
-        confirmModalKey: {
-            type: StringConstructor;
-            default: string;
-        };
-        confirmData: {
-            type: ObjectConstructor;
-            required: false;
-            default: () => {};
-        };
-    }>> & {
-        onClick?: (...args: any[]) => any;
-    }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "click"[], import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
-        to: {
-            type: (ObjectConstructor | StringConstructor)[];
-            default: any;
-        };
-        target: {
-            type: StringConstructor;
-            default: string;
-        };
-        href: {
-            type: StringConstructor;
-            default: string;
-        };
-        route: {
-            type: StringConstructor;
-            default: string;
-        };
-        palette: {
-            type: StringConstructor;
-            default: string;
-        };
-        download: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        downloadFileName: {
-            type: StringConstructor;
-            default: string;
-        };
-        isBack: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        isVanilla: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        onClick: {
-            type: FunctionConstructor[];
-            default: any;
-        };
-        confirmModal: {
-            type: StringConstructor;
-            default: string;
-        };
-        confirmModalKey: {
-            type: StringConstructor;
-            default: string;
-        };
-        confirmData: {
-            type: ObjectConstructor;
-            required: false;
-            default: () => {};
-        };
-    }>> & {
-        onClick?: (...args: any[]) => any;
-    }, {
-        target: string;
-        onClick: Function;
-        download: boolean;
-        href: string;
-        to: string | Record<string, any>;
-        route: string;
-        palette: string;
-        downloadFileName: string;
-        isBack: boolean;
-        isVanilla: boolean;
-        confirmModal: string;
-        confirmModalKey: string;
-        confirmData: Record<string, any>;
-    }, true, {}, {}, {
-        P: {};
-        B: {};
-        D: {};
-        C: {};
-        M: {};
-        Defaults: {};
-    }, Readonly<import("vue").ExtractPropTypes<{
-        to: {
-            type: (ObjectConstructor | StringConstructor)[];
-            default: any;
-        };
-        target: {
-            type: StringConstructor;
-            default: string;
-        };
-        href: {
-            type: StringConstructor;
-            default: string;
-        };
-        route: {
-            type: StringConstructor;
-            default: string;
-        };
-        palette: {
-            type: StringConstructor;
-            default: string;
-        };
-        download: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        downloadFileName: {
-            type: StringConstructor;
-            default: string;
-        };
-        isBack: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        isVanilla: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        onClick: {
-            type: FunctionConstructor[];
-            default: any;
-        };
-        confirmModal: {
-            type: StringConstructor;
-            default: string;
-        };
-        confirmModalKey: {
-            type: StringConstructor;
-            default: string;
-        };
-        confirmData: {
-            type: ObjectConstructor;
-            required: false;
-            default: () => {};
-        };
-    }>> & {
-        onClick?: (...args: any[]) => any;
-    }, {}, {}, {}, {}, {
-        target: string;
-        onClick: Function;
-        download: boolean;
-        href: string;
-        to: string | Record<string, any>;
-        route: string;
-        palette: string;
-        downloadFileName: string;
-        isBack: boolean;
-        isVanilla: boolean;
-        confirmModal: string;
-        confirmModalKey: string;
-        confirmData: Record<string, any>;
-    }>;
-    __isFragment?: never;
-    __isTeleport?: never;
-    __isSuspense?: never;
-} & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
-    to: {
-        type: (ObjectConstructor | StringConstructor)[];
-        default: any;
-    };
-    target: {
-        type: StringConstructor;
-        default: string;
-    };
-    href: {
-        type: StringConstructor;
-        default: string;
-    };
-    route: {
-        type: StringConstructor;
-        default: string;
-    };
-    palette: {
-        type: StringConstructor;
-        default: string;
-    };
-    download: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    downloadFileName: {
-        type: StringConstructor;
-        default: string;
-    };
-    isBack: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    isVanilla: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    onClick: {
-        type: FunctionConstructor[];
-        default: any;
-    };
-    confirmModal: {
-        type: StringConstructor;
-        default: string;
-    };
-    confirmModalKey: {
-        type: StringConstructor;
-        default: string;
-    };
-    confirmData: {
-        type: ObjectConstructor;
-        required: false;
-        default: () => {};
-    };
-}>> & {
-    onClick?: (...args: any[]) => any;
-}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "click"[], "click", {
+import { RouteLocationRaw } from "vue-router";
+import { LktObject } from "lkt-ts-interfaces";
+declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
+    to?: RouteLocationRaw | undefined;
+    class?: string | undefined;
+    target?: string | undefined;
+    href?: string | undefined;
+    route?: string | undefined;
+    palette?: string | undefined;
+    download?: boolean | undefined;
+    downloadFileName?: string | undefined;
+    isBack?: boolean | undefined;
+    isVanilla?: boolean | undefined;
+    onClick?: Function | undefined;
+    confirmModal?: string | undefined;
+    confirmModalKey?: string | undefined;
+    confirmData?: LktObject | undefined;
+}>, {
+    to: string;
+    class: string;
     target: string;
+    href: string;
+    route: string;
+    palette: string;
+    download: boolean;
+    downloadFileName: string;
+    isBack: boolean;
+    isVanilla: boolean;
+    onClick: undefined;
+    confirmModal: string;
+    confirmModalKey: string;
+    confirmData: () => {};
+}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+    click: (...args: any[]) => void;
+}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
+    to?: RouteLocationRaw | undefined;
+    class?: string | undefined;
+    target?: string | undefined;
+    href?: string | undefined;
+    route?: string | undefined;
+    palette?: string | undefined;
+    download?: boolean | undefined;
+    downloadFileName?: string | undefined;
+    isBack?: boolean | undefined;
+    isVanilla?: boolean | undefined;
+    onClick?: Function | undefined;
+    confirmModal?: string | undefined;
+    confirmModalKey?: string | undefined;
+    confirmData?: LktObject | undefined;
+}>, {
+    to: string;
+    class: string;
+    target: string;
+    href: string;
+    route: string;
+    palette: string;
+    download: boolean;
+    downloadFileName: string;
+    isBack: boolean;
+    isVanilla: boolean;
+    onClick: undefined;
+    confirmModal: string;
+    confirmModalKey: string;
+    confirmData: () => {};
+}>>> & {
+    onClick?: ((...args: any[]) => any) | undefined;
+}, {
+    target: string;
+    class: string;
     onClick: Function;
     download: boolean;
     href: string;
-    to: string | Record<string, any>;
+    to: RouteLocationRaw;
     route: string;
     palette: string;
     downloadFileName: string;
@@ -275,10 +78,30 @@ declare const _default: {
     isVanilla: boolean;
     confirmModal: string;
     confirmModalKey: string;
-    confirmData: Record<string, any>;
-}, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
-    $slots: {
-        default: (_: {}) => any;
-    };
-});
+    confirmData: LktObject;
+}, {}>, {
+    default?(_: {}): any;
+}>;
 export default _default;
+type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
+type __VLS_TypePropsToRuntimeProps<T> = {
+    [K in keyof T]-?: {} extends Pick<T, K> ? {
+        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
+    } : {
+        type: import('vue').PropType<T[K]>;
+        required: true;
+    };
+};
+type __VLS_WithDefaults<P, D> = {
+    [K in keyof Pick<P, keyof P>]: K extends keyof D ? __VLS_Prettify<P[K] & {
+        default: D[K];
+    }> : P[K];
+};
+type __VLS_Prettify<T> = {
+    [K in keyof T]: T[K];
+} & {};
+type __VLS_WithTemplateSlots<T, S> = T & {
+    new (): {
+        $slots: S;
+    };
+};
