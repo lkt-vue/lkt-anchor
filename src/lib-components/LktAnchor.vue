@@ -66,6 +66,10 @@ const onClick = (e: Event) => {
             return props.onClick();
         }
 
+        if (props.href) {
+            return;
+        }
+
         if (!props.href || props.href === '#') {
             e.preventDefault();
         }
@@ -103,10 +107,18 @@ const onClick = (e: Event) => {
 </script>
 
 <template>
-    <a v-bind:class="classes"
+    <a v-if="download"
+        v-bind:class="classes"
        v-bind:href="href"
        v-bind:target="target"
        v-bind:download="downloadFileName"
+       v-on:click="onClick">
+        <slot></slot>
+    </a>
+    <a v-else
+        v-bind:class="classes"
+       v-bind:href="href"
+       v-bind:target="target"
        v-on:click="onClick">
         <slot></slot>
     </a>
