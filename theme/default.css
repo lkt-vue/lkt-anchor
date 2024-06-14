@@ -1,0 +1,19 @@
+:root {
+    --lkt-anchor-color: #444444;
+    --lkt-anchor-color-active: #007ebc;
+    --lkt-anchor-color-hover: #007ebc;
+    --lkt-anchor-font-family: system-ui, Helvetica;
+    --lkt-anchor-font-size: 16px;
+    --lkt-anchor-font-weight: 400;
+    --lkt-anchor-letter-spacing: 0;
+    --lkt-anchor-line-height: 1.425;
+    --lkt-anchor-text-decoration: underline;
+    --lkt-anchor-text-decoration-active: underline;
+    --lkt-anchor-text-decoration-hover: underline;
+    --lkt-anchor-transition: all linear 100ms;
+
+    --lkt-anchor-img-max-width: 50px;
+    --lkt-anchor-img-max-height: 50px;
+
+    --lkt-anchor-gap: 7px;
+}

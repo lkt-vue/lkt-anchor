@@ -1,7 +1,7 @@
-import { defineComponent as h, computed as k, openBlock as s, createElementBlock as c, normalizeClass as d, renderSlot as u } from "vue";
-import { useRouter as C } from "vue-router";
-import y, { openConfirm as g } from "lkt-modal-confirm";
-const v = ["href", "target", "download"], B = ["href", "target"], D = /* @__PURE__ */ h({
+import { defineComponent as h, computed as k, openBlock as s, createElementBlock as u, normalizeClass as c, renderSlot as d } from "vue";
+import { useRouter as y } from "vue-router";
+import C, { openConfirm as v } from "lkt-modal-confirm";
+const g = ["href", "target", "download"], D = ["href", "target"], B = /* @__PURE__ */ h({
   __name: "LktAnchor",
   props: {
     to: { default: "" },
@@ -21,64 +21,68 @@ const v = ["href", "target", "download"], B = ["href", "target"], D = /* @__PURE
   },
   emits: ["click"],
   setup(e, { emit: l }) {
-    const t = e, m = l, r = C(), f = k(() => {
-      const o = ["lkt-anchor"];
-      return t.class && o.push(t.class), t.palette && o.push(`lkt-anchor--${t.palette}`), o.join(" ");
-    }), i = (o) => {
-      const a = () => {
-        if (t.isBack) {
-          o.preventDefault(), o.stopPropagation(), r.back();
+    const o = e, p = l, r = y(), f = k(() => {
+      const t = ["lkt-anchor"];
+      return o.class && t.push(o.class), o.palette && t.push(`lkt-anchor--${o.palette}`), o.to && r.currentRoute.value.path === o.to && t.push("lkt-anchor-active"), t.join(" ");
+    }), i = (t) => {
+      const n = () => {
+        if (o.isBack) {
+          t.preventDefault(), t.stopPropagation(), r.back();
           return;
         }
-        if (typeof t.onClick == "function")
-          return o.preventDefault(), o.stopPropagation(), t.onClick();
-        if (!t.href) {
-          if ((!t.href || t.href === "#") && o.preventDefault(), !t.isVanilla && typeof t.to < "u") {
-            o.preventDefault(), o.stopPropagation(), r.push(t.to);
+        if (typeof o.onClick == "function")
+          return t.preventDefault(), t.stopPropagation(), o.onClick();
+        if (!o.href) {
+          if ((!o.href || o.href === "#") && t.preventDefault(), !o.isVanilla && typeof o.to < "u") {
+            t.preventDefault(), t.stopPropagation(), r.push(o.to);
             return;
           }
-          m("click", o);
+          if (!o.isVanilla && typeof o.route < "u") {
+            t.preventDefault(), t.stopPropagation(), r.push(o.to);
+            return;
+          }
+          p("click", t);
         }
       };
-      if (t.confirmModal) {
-        let n = typeof t.confirmData == "object" ? JSON.parse(JSON.stringify(t.confirmData)) : {};
-        if (typeof n.onConfirm == "function") {
-          let p = n.onConfirm.bind({});
-          n.onConfirm = () => {
-            p(), a();
+      if (o.confirmModal) {
+        let a = typeof o.confirmData == "object" ? JSON.parse(JSON.stringify(o.confirmData)) : {};
+        if (typeof a.onConfirm == "function") {
+          let m = a.onConfirm.bind({});
+          a.onConfirm = () => {
+            m(), n();
           };
         } else
-          n.onConfirm = () => {
-            a();
+          a.onConfirm = () => {
+            n();
           };
-        return g(t.confirmModal, t.confirmModalKey, n);
+        return v(o.confirmModal, o.confirmModalKey, a);
       }
-      a();
+      n();
     };
-    return (o, a) => o.download ? (s(), c("a", {
+    return (t, n) => t.download ? (s(), u("a", {
       key: 0,
-      class: d(f.value),
-      href: o.href,
-      target: o.target,
-      download: o.downloadFileName,
+      class: c(f.value),
+      href: t.href,
+      target: t.target,
+      download: t.downloadFileName,
       onClick: i
     }, [
-      u(o.$slots, "default")
-    ], 10, v)) : (s(), c("a", {
+      d(t.$slots, "default")
+    ], 10, g)) : (s(), u("a", {
       key: 1,
-      class: d(f.value),
-      href: o.href,
-      target: o.target,
+      class: c(f.value),
+      href: t.href,
+      target: t.target,
       onClick: i
     }, [
-      u(o.$slots, "default")
-    ], 10, B));
+      d(t.$slots, "default")
+    ], 10, D));
   }
-}), b = {
+}), P = {
   install: (e, l) => {
-    e.component("lkt-anchor") === void 0 && e.component("lkt-anchor", D), e.component("lkt-modal-confirm") === void 0 && e.use(y);
+    e.component("lkt-anchor") === void 0 && e.component("lkt-anchor", B), e.component("lkt-modal-confirm") === void 0 && e.use(C);
   }
 };
 export {
-  b as default
+  P as default
 };

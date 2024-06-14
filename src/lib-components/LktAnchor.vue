@@ -46,6 +46,13 @@ const classes = computed(() => {
     if (props.class) r.push(props.class);
     if (props.palette) r.push(`lkt-anchor--${props.palette}`);
 
+    if (props.to) {
+        let currentRoute = router.currentRoute;
+        if (currentRoute.value.path === props.to) {
+            r.push('lkt-anchor-active');
+        }
+    }
+
     return r.join(' ');
 });
 
@@ -75,6 +82,13 @@ const onClick = (e: Event) => {
         }
 
         if (!props.isVanilla && typeof props.to !== 'undefined') {
+            e.preventDefault();
+            e.stopPropagation();
+            router.push(props.to);
+            return;
+        }
+
+        if (!props.isVanilla && typeof props.route !== 'undefined') {
             e.preventDefault();
             e.stopPropagation();
             router.push(props.to);

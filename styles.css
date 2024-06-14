@@ -1,0 +1,28 @@
+.lkt-anchor {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--lkt-anchor-gap);
+    color: var(--lkt-anchor-color);
+    font-family: var(--lkt-anchor-font-family), serif;
+    font-size: var(--lkt-anchor-font-size);
+    font-weight: var(--lkt-anchor-font-weight);
+    letter-spacing: var(--lkt-anchor-letter-spacing);
+    text-decoration: var(--lkt-anchor-text-decoration);
+    transition: var(--lkt-anchor-transition);
+}
+
+.lkt-anchor-active {
+    color: var(--lkt-anchor-color-active);
+    text-decoration: var(--lkt-anchor-text-decoration-active);
+}
+
+.lkt-anchor:hover {
+    color: var(--lkt-anchor-color-hover);
+    text-decoration: var(--lkt-anchor-text-decoration-hover);
+}
+
+.lkt-anchor img {
+    max-width: var(--lkt-anchor-img-max-width);
+    max-height: var(--lkt-anchor-img-max-height);
+}
