@@ -1,4 +1,7 @@
 :root {
+    --lkt-anchor-align-items: center;
+    --lkt-anchor-justify-content: center;
+    --lkt-anchor-text-align: center;
     --lkt-anchor-color: #444444;
     --lkt-anchor-color-active: #007ebc;
     --lkt-anchor-color-hover: #007ebc;
@@ -11,9 +14,11 @@
     --lkt-anchor-text-decoration-active: underline;
     --lkt-anchor-text-decoration-hover: underline;
     --lkt-anchor-transition: all linear 100ms;
+    --lkt-anchor-width: auto;
 
     --lkt-anchor-img-max-width: 50px;
     --lkt-anchor-img-max-height: 50px;
 
     --lkt-anchor-gap: 7px;
+    --lkt-anchor-padding: 0;
 }

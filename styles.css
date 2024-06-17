@@ -1,7 +1,7 @@
 .lkt-anchor {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    align-items: var(--lkt-anchor-align-items);
+    justify-content: var(--lkt-anchor-justify-content);
     gap: var(--lkt-anchor-gap);
     color: var(--lkt-anchor-color);
     font-family: var(--lkt-anchor-font-family), serif;
@@ -10,6 +10,9 @@
     letter-spacing: var(--lkt-anchor-letter-spacing);
     text-decoration: var(--lkt-anchor-text-decoration);
     transition: var(--lkt-anchor-transition);
+    padding: var(--lkt-anchor-padding);
+    text-align: var(--lkt-anchor-text-align);
+    width: var(--lkt-anchor-width);
 }
 
 .lkt-anchor-active {
