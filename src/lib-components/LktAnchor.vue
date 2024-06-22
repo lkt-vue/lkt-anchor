@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<{
     isBack?: boolean
     imposter?: boolean
     isVanilla?: boolean
-    onClick?: Function|undefined
+    onClick?: Function | undefined
     confirmModal?: string
     confirmModalKey?: string
     confirmData?: LktObject
@@ -43,22 +43,29 @@ const emit = defineEmits(['click']);
 const router = useRouter();
 
 const classes = computed(() => {
-    const r = [];
+        const r = [];
 
-    if (!props.imposter) r.push('lkt-anchor');
+        if (!props.imposter) r.push('lkt-anchor');
 
-    if (props.class) r.push(props.class);
-    if (props.palette) r.push(`lkt-anchor--${props.palette}`);
+        if (props.class) r.push(props.class);
+        if (props.palette) r.push(`lkt-anchor--${props.palette}`);
 
-    if (props.to) {
-        let currentRoute = router.currentRoute;
-        if (currentRoute.value.path === props.to) {
-            r.push('lkt-anchor-active');
+        if (props.to) {
+            let currentRoute = router.currentRoute;
+            if (currentRoute.value.path === props.to) {
+                r.push('lkt-anchor-active');
+            }
         }
-    }
 
-    return r.join(' ');
-});
+        return r.join(' ');
+    }),
+    computedHref = computed(() => {
+        if (props.href !== '') return props.href;
+
+        if (typeof props.to === 'string' && props.to !== '') return props.to;
+
+        return '';
+    });
 
 
 const onClick = (e: Event) => {
@@ -120,22 +127,21 @@ const onClick = (e: Event) => {
     }
 
     internalClickEvent();
-
 }
 </script>
 
 <template>
     <a v-if="download"
-        v-bind:class="classes"
-       v-bind:href="href"
+       v-bind:class="classes"
+       v-bind:href="computedHref"
        v-bind:target="target"
        v-bind:download="downloadFileName"
        v-on:click="onClick">
         <slot></slot>
     </a>
     <a v-else
-        v-bind:class="classes"
-       v-bind:href="href"
+       v-bind:class="classes"
+       v-bind:href="computedHref"
        v-bind:target="target"
        v-on:click="onClick">
         <slot></slot>
