@@ -10,6 +10,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     download?: boolean | undefined;
     downloadFileName?: string | undefined;
     isBack?: boolean | undefined;
+    imposter?: boolean | undefined;
     isVanilla?: boolean | undefined;
     onClick?: Function | undefined;
     confirmModal?: string | undefined;
@@ -25,6 +26,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     download: boolean;
     downloadFileName: string;
     isBack: boolean;
+    imposter: boolean;
     isVanilla: boolean;
     onClick: undefined;
     confirmModal: string;
@@ -42,6 +44,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     download?: boolean | undefined;
     downloadFileName?: string | undefined;
     isBack?: boolean | undefined;
+    imposter?: boolean | undefined;
     isVanilla?: boolean | undefined;
     onClick?: Function | undefined;
     confirmModal?: string | undefined;
@@ -57,6 +60,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     download: boolean;
     downloadFileName: string;
     isBack: boolean;
+    imposter: boolean;
     isVanilla: boolean;
     onClick: undefined;
     confirmModal: string;
@@ -75,6 +79,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     palette: string;
     downloadFileName: string;
     isBack: boolean;
+    imposter: boolean;
     isVanilla: boolean;
     confirmModal: string;
     confirmModalKey: string;

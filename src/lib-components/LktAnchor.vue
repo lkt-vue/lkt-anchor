@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<{
     download?: boolean
     downloadFileName?: string
     isBack?: boolean
+    imposter?: boolean
     isVanilla?: boolean
     onClick?: Function|undefined
     confirmModal?: string
@@ -29,6 +30,7 @@ const props = withDefaults(defineProps<{
     download: false,
     downloadFileName: '',
     isBack: false,
+    imposter: false,
     isVanilla: false,
     onClick: undefined,
     confirmModal: '',
@@ -41,7 +43,9 @@ const emit = defineEmits(['click']);
 const router = useRouter();
 
 const classes = computed(() => {
-    const r = ['lkt-anchor'];
+    const r = [];
+
+    if (!props.imposter) r.push('lkt-anchor');
 
     if (props.class) r.push(props.class);
     if (props.palette) r.push(`lkt-anchor--${props.palette}`);
