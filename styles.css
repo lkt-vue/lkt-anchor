@@ -29,3 +29,14 @@
     max-width: var(--lkt-anchor-img-max-width);
     max-height: var(--lkt-anchor-img-max-height);
 }
+
+.lkt-anchor.is-disabled {
+    cursor: text;
+    color: var(--lkt-anchor-color-disabled);
+    text-decoration: var(--lkt-anchor-text-decoration-disabled);
+}
+
+.lkt-anchor.is-disabled:hover {
+    color: var(--lkt-anchor-color-disabled-hover);
+    text-decoration: var(--lkt-anchor-text-decoration-disabled-hover);
+}

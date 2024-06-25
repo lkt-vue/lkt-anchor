@@ -11,11 +11,13 @@ const props = withDefaults(defineProps<{
     href?: string
     route?: string
     palette?: string
+    isActive?: boolean
     download?: boolean
     downloadFileName?: string
     isBack?: boolean
     imposter?: boolean
     isVanilla?: boolean
+    disabled?: boolean
     onClick?: Function | undefined
     confirmModal?: string
     confirmModalKey?: string
@@ -27,11 +29,13 @@ const props = withDefaults(defineProps<{
     href: '',
     route: '',
     palette: '',
+    isActive: false,
     download: false,
     downloadFileName: '',
     isBack: false,
     imposter: false,
     isVanilla: false,
+    disabled: false,
     onClick: undefined,
     confirmModal: '',
     confirmModalKey: '_',
@@ -48,6 +52,7 @@ const classes = computed(() => {
         if (!props.imposter) r.push('lkt-anchor');
 
         if (props.class) r.push(props.class);
+        if (props.disabled) r.push('is-disabled');
         if (props.palette) r.push(`lkt-anchor--${props.palette}`);
 
         if (props.to) {
@@ -56,6 +61,8 @@ const classes = computed(() => {
                 r.push('lkt-anchor-active');
             }
         }
+
+        if (props.isActive && !r.includes('lkt-anchor-active')) r.push('lkt-anchor-active');
 
         return r.join(' ');
     }),
@@ -70,6 +77,12 @@ const classes = computed(() => {
 
 const onClick = (e: Event) => {
 
+    if (props.disabled) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }
+
     const internalClickEvent = () => {
         if (props.isBack) {
             e.preventDefault();
@@ -79,9 +92,12 @@ const onClick = (e: Event) => {
         }
 
         if (typeof props.onClick === 'function') {
-            e.preventDefault();
-            e.stopPropagation();
-            return props.onClick();
+            let clickResponse = props.onClick(e);
+            if (!clickResponse) {
+                e.preventDefault();
+                e.stopPropagation();
+                return clickResponse;
+            }
         }
 
         if (props.href) {

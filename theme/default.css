@@ -5,6 +5,8 @@
     --lkt-anchor-color: #444444;
     --lkt-anchor-color-active: #007ebc;
     --lkt-anchor-color-hover: #007ebc;
+    --lkt-anchor-color-disabled: #cccccc;
+    --lkt-anchor-color-disabled-hover: #cccccc;
     --lkt-anchor-font-family: system-ui, Helvetica;
     --lkt-anchor-font-size: 16px;
     --lkt-anchor-font-weight: 400;
@@ -13,6 +15,8 @@
     --lkt-anchor-text-decoration: underline;
     --lkt-anchor-text-decoration-active: underline;
     --lkt-anchor-text-decoration-hover: underline;
+    --lkt-anchor-text-decoration-disabled: none;
+    --lkt-anchor-text-decoration-disabled-hover: none;
     --lkt-anchor-transition: all linear 100ms;
     --lkt-anchor-width: auto;
 
