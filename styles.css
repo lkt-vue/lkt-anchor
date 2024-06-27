@@ -1,5 +1,6 @@
 .lkt-anchor {
     display: inline-flex;
+    position: relative;
     align-items: var(--lkt-anchor-align-items);
     justify-content: var(--lkt-anchor-justify-content);
     gap: var(--lkt-anchor-gap);
@@ -13,6 +14,7 @@
     padding: var(--lkt-anchor-padding);
     text-align: var(--lkt-anchor-text-align);
     width: var(--lkt-anchor-width);
+    height: var(--lkt-anchor-height);
 }
 
 .lkt-anchor-active {

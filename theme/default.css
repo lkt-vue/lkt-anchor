@@ -19,6 +19,7 @@
     --lkt-anchor-text-decoration-disabled-hover: none;
     --lkt-anchor-transition: all linear 100ms;
     --lkt-anchor-width: auto;
+    --lkt-anchor-height: auto;
 
     --lkt-anchor-img-max-width: 50px;
     --lkt-anchor-img-max-height: 50px;
