@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import {RouteLocationRaw, useRouter} from "vue-router";
-import {computed} from "vue";
+import {RouteLocationRaw, useRoute, useRouter} from "vue-router";
+import {computed, ref, watch} from "vue";
 import {LktObject} from "lkt-ts-interfaces";
 import {openConfirm} from "lkt-modal-confirm";
 
@@ -42,9 +42,22 @@ const props = withDefaults(defineProps<{
     confirmData: () => ({}),
 });
 
-const emit = defineEmits(['click']);
+const emit = defineEmits(['click', 'active']);
 
 const router = useRouter();
+
+const routeIsActive = ref(props.isActive);
+
+const checkIfActiveRoute = () => {
+    let currentRoute = router.currentRoute;
+    routeIsActive.value = currentRoute.value.path === props.to || currentRoute.value.path === props.href;
+    emit('active', routeIsActive.value);
+}
+
+const route = useRoute();
+watch(route, (to) => {
+    checkIfActiveRoute();
+}, {flush: 'pre', immediate: true, deep: true})
 
 const classes = computed(() => {
         const r = [];
@@ -56,10 +69,7 @@ const classes = computed(() => {
         if (props.palette) r.push(`lkt-anchor--${props.palette}`);
 
         if (props.to) {
-            let currentRoute = router.currentRoute;
-            if (currentRoute.value.path === props.to) {
-                r.push('lkt-anchor-active');
-            }
+            if (routeIsActive.value) r.push('lkt-anchor-active');
         }
 
         if (props.isActive && !r.includes('lkt-anchor-active')) r.push('lkt-anchor-active');
@@ -144,6 +154,8 @@ const onClick = (e: Event) => {
 
     internalClickEvent();
 }
+
+checkIfActiveRoute();
 </script>
 
 <template>

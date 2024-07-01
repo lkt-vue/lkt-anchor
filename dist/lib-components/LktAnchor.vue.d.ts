@@ -37,6 +37,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     confirmModalKey: string;
     confirmData: () => {};
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+    active: (...args: any[]) => void;
     click: (...args: any[]) => void;
 }, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
     to?: RouteLocationRaw | undefined;
@@ -76,6 +77,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     confirmData: () => {};
 }>>> & {
     onClick?: ((...args: any[]) => any) | undefined;
+    onActive?: ((...args: any[]) => any) | undefined;
 }, {
     target: string;
     disabled: boolean;
