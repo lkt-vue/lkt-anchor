@@ -96,7 +96,7 @@ const onClick = (e: Event) => {
     const internalClickEvent = () => {
         if (props.isBack) {
             e.preventDefault();
-            e.stopPropagation();
+            // e.stopPropagation();
             router.back();
             return;
         }
@@ -105,7 +105,7 @@ const onClick = (e: Event) => {
             let clickResponse = props.onClick(e);
             if (!clickResponse) {
                 e.preventDefault();
-                e.stopPropagation();
+                // e.stopPropagation();
                 return clickResponse;
             }
         }
@@ -120,14 +120,14 @@ const onClick = (e: Event) => {
 
         if (!props.isVanilla && typeof props.to !== 'undefined') {
             e.preventDefault();
-            e.stopPropagation();
+            // e.stopPropagation();
             router.push(props.to);
             return;
         }
 
         if (!props.isVanilla && typeof props.route !== 'undefined') {
             e.preventDefault();
-            e.stopPropagation();
+            // e.stopPropagation();
             router.push(props.to);
             return;
         }
