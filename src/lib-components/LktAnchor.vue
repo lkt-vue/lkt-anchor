@@ -46,12 +46,26 @@ const emit = defineEmits(['click', 'active']);
 
 const router = useRouter();
 
-const routeIsActive = ref(props.isActive);
+const routeIsActive = ref(props.isActive),
+    routeIsActiveParent = ref(false);
 
 const checkIfActiveRoute = () => {
     let currentRoute = router.currentRoute;
     routeIsActive.value = currentRoute.value.path === props.to || currentRoute.value.path === props.href;
     emit('active', routeIsActive.value);
+
+    let validParentPath = (currentPath: string, ownPath: string) => {
+        if (ownPath === '') {
+            return currentPath === '';
+        }
+
+        if (ownPath === '/') {
+            return currentPath === '/';
+        }
+
+        return currentPath.startsWith(ownPath);
+    }
+    routeIsActiveParent.value = validParentPath(currentRoute.value.path, props.to);
 }
 
 const route = useRoute();
@@ -70,6 +84,7 @@ const classes = computed(() => {
 
         if (props.to) {
             if (routeIsActive.value) r.push('lkt-anchor-active');
+            if (routeIsActiveParent.value) r.push('lkt-anchor-active-parent');
         }
 
         if (props.isActive && !r.includes('lkt-anchor-active')) r.push('lkt-anchor-active');
