@@ -50,22 +50,24 @@ const routeIsActive = ref(props.isActive),
     routeIsActiveParent = ref(false);
 
 const checkIfActiveRoute = () => {
-    let currentRoute = router.currentRoute;
-    routeIsActive.value = currentRoute.value.path === props.to || currentRoute.value.path === props.href;
-    emit('active', routeIsActive.value);
+    let currentRoute = router?.currentRoute;
+    if (currentRoute) {
+        routeIsActive.value = currentRoute.value.path === props.to || currentRoute.value.path === props.href;
+        emit('active', routeIsActive.value);
 
-    let validParentPath = (currentPath: string, ownPath: string) => {
-        if (ownPath === '') {
-            return currentPath === '';
+        let validParentPath = (currentPath: string, ownPath: string) => {
+            if (ownPath === '') {
+                return currentPath === '';
+            }
+
+            if (ownPath === '/') {
+                return currentPath === '/';
+            }
+
+            return currentPath.startsWith(ownPath);
         }
-
-        if (ownPath === '/') {
-            return currentPath === '/';
-        }
-
-        return currentPath.startsWith(ownPath);
+        routeIsActiveParent.value = validParentPath(currentRoute.value.path, props.to);
     }
-    routeIsActiveParent.value = validParentPath(currentRoute.value.path, props.to);
 }
 
 const route = useRoute();

@@ -24,11 +24,13 @@ const _ = ["href", "target", "download"], N = ["href", "target"], F = /* @__PURE
   },
   emits: ["click", "active"],
   setup(a, { emit: f }) {
-    const e = a, s = f, r = b(), i = h(e.isActive), u = h(!1), c = () => {
-      let t = r.currentRoute;
-      i.value = t.value.path === e.to || t.value.path === e.href, s("active", i.value);
-      let n = (o, l) => l === "" ? o === "" : l === "/" ? o === "/" : o.startsWith(l);
-      u.value = n(t.value.path, e.to);
+    const e = a, s = f, n = b(), i = h(e.isActive), u = h(!1), c = () => {
+      let t = n == null ? void 0 : n.currentRoute;
+      if (t) {
+        i.value = t.value.path === e.to || t.value.path === e.href, s("active", i.value);
+        let l = (o, r) => r === "" ? o === "" : r === "/" ? o === "/" : o.startsWith(r);
+        u.value = l(t.value.path, e.to);
+      }
     }, B = M();
     D(B, (t) => {
       c();
@@ -39,9 +41,9 @@ const _ = ["href", "target", "download"], N = ["href", "target"], F = /* @__PURE
     }), p = v(() => e.href !== "" ? e.href : typeof e.to == "string" && e.to !== "" ? e.to : ""), m = (t) => {
       if (e.disabled)
         return t.preventDefault(), t.stopPropagation(), !1;
-      const n = () => {
+      const l = () => {
         if (e.isBack) {
-          t.preventDefault(), r.back();
+          t.preventDefault(), n.back();
           return;
         }
         if (typeof e.onClick == "function") {
@@ -51,11 +53,11 @@ const _ = ["href", "target", "download"], N = ["href", "target"], F = /* @__PURE
         }
         if (!e.href) {
           if ((!e.href || e.href === "#") && t.preventDefault(), !e.isVanilla && typeof e.to < "u") {
-            t.preventDefault(), r.push(e.to);
+            t.preventDefault(), n.push(e.to);
             return;
           }
           if (!e.isVanilla && typeof e.route < "u") {
-            t.preventDefault(), r.push(e.to);
+            t.preventDefault(), n.push(e.to);
             return;
           }
           s("click", t);
@@ -64,19 +66,19 @@ const _ = ["href", "target", "download"], N = ["href", "target"], F = /* @__PURE
       if (e.confirmModal) {
         let o = typeof e.confirmData == "object" ? JSON.parse(JSON.stringify(e.confirmData)) : {};
         if (typeof o.onConfirm == "function") {
-          let l = o.onConfirm.bind({});
+          let r = o.onConfirm.bind({});
           o.onConfirm = () => {
-            l(), n();
+            r(), l();
           };
         } else
           o.onConfirm = () => {
-            n();
+            l();
           };
         return w(e.confirmModal, e.confirmModalKey, o);
       }
-      n();
+      l();
     };
-    return c(), (t, n) => t.download ? (k(), y("a", {
+    return c(), (t, l) => t.download ? (k(), y("a", {
       key: 0,
       class: C(d.value),
       href: p.value,
