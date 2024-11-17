@@ -1,4 +1,5 @@
-export { V as default };
-declare namespace V {
-    function install(a: any, f: any): void;
+declare var o: any;
+declare namespace K {
+    function install(l: any, v: any): void;
 }
+export { o as AnchorType, K as default };

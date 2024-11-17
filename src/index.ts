@@ -3,6 +3,7 @@ import {default as anchor} from "./lib-components/LktAnchor.vue";
 import {App, Plugin} from "vue";
 import LktModalConfirm from "lkt-modal-confirm";
 import "../styles.css";
+export {AnchorType} from "./enum/AnchorType";
 
 const LktAnchor: Plugin = {
     install: (app: App, options: any) => {
