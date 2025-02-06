@@ -24,7 +24,8 @@ export default {
                 'vue',
                 'lkt-events',
                 'vue-router',
-                'lkt-modal-confirm'
+                'lkt-modal-confirm',
+                'lkt-vue-kernel'
             ],
             output: {
                 globals: {

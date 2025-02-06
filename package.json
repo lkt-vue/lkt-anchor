@@ -1,6 +1,6 @@
 {
   "name": "lkt-anchor",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "",
   "type": "module",
   "module": "./dist/build.js",
@@ -42,6 +42,7 @@
   "dependencies": {
     "lkt-modal-confirm": "^1.0.0",
     "lkt-ts-interfaces": "^1.0.2",
+    "lkt-vue-kernel": "^1.0.2",
     "vue": "^3.4",
     "vue-router": "^4.2.5"
   }

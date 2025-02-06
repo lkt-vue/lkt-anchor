@@ -1,150 +1,119 @@
-import { defineComponent as M, ref as p, watch as _, computed as f, onMounted as H, openBlock as C, createElementBlock as b, normalizeClass as L, renderSlot as R } from "vue";
-import { useRouter as N, useRoute as S } from "vue-router";
-import V, { openConfirm as $ } from "lkt-modal-confirm";
-var o = /* @__PURE__ */ ((l) => (l.Href = "href", l.RouterLink = "router-link", l.RouterLinkBack = "router-link-back", l.Mail = "mail", l.Tel = "tel", l.Tab = "tab", l.Download = "download", l.Action = "action", l.Legacy = "", l))(o || {});
-const A = ["href", "target", "download"], F = ["href", "target"], I = /* @__PURE__ */ M({
+import { defineComponent as S, mergeDefaults as T, ref as l, watch as D, computed as c, onMounted as F, createElementBlock as b, openBlock as R, normalizeClass as L, renderSlot as w } from "vue";
+import { useRouter as H, useRoute as N } from "vue-router";
+import I, { openConfirm as j } from "lkt-modal-confirm";
+import { Anchor as d, AnchorType as n, getDefaultValues as E } from "lkt-vue-kernel";
+import { AnchorType as P } from "lkt-vue-kernel";
+const J = ["href", "target", "download"], K = ["href", "target"], O = /* @__PURE__ */ S({
   __name: "LktAnchor",
-  props: {
-    type: { default: o.Legacy },
-    to: { default: "" },
-    class: { default: "" },
-    isActive: { type: Boolean, default: !1 },
-    downloadFileName: { default: "" },
-    disabled: { type: Boolean, default: !1 },
-    onClick: { type: Function, default: void 0 },
-    confirmModal: { default: "" },
-    confirmModalKey: { default: "_" },
-    confirmData: { default: () => ({}) },
-    imposter: { type: Boolean, default: !1 },
-    target: { default: "" },
-    href: { default: "" },
-    route: { default: "" },
-    download: { type: Boolean, default: !1 },
-    isBack: { type: Boolean, default: !1 },
-    isVanilla: { type: Boolean, default: !1 }
-  },
+  props: /* @__PURE__ */ T({
+    type: {},
+    to: {},
+    class: {},
+    isActive: { type: Boolean },
+    downloadFileName: {},
+    disabled: { type: Boolean },
+    onClick: { type: Function },
+    confirmModal: { type: [String, Function] },
+    confirmModalKey: { type: [String, Function] },
+    confirmData: {},
+    imposter: { type: Boolean }
+  }, E(d)),
   emits: ["click", "active"],
-  setup(l, { emit: v }) {
-    const e = l, u = v, i = N(), s = p(e.isActive), m = p(!1), n = p(e.type), k = () => {
-      if (![o.RouterLink, o.Legacy].includes(n.value)) return;
-      let t = i == null ? void 0 : i.currentRoute;
-      if (t) {
-        s.value = t.value.path === e.to || t.value.path === e.href, u("active", s.value);
-        let a = (r, d) => d === "" ? r === "" : d === "/" ? r === "/" : r.startsWith(d);
-        m.value = a(t.value.path, e.to);
+  setup(r, { emit: m }) {
+    const t = r, v = l(new d(t));
+    D(t, (e) => v.value = new d(e));
+    const u = m, i = H(), s = l(t.isActive), k = l(!1), M = l(t.type), y = () => {
+      if (![n.RouterLink, n.Legacy].includes(M.value)) return;
+      let e = i == null ? void 0 : i.currentRoute;
+      if (e) {
+        s.value = e.value.path === t.to, u("active", s.value);
+        let o = (a, p) => p === "" ? a === "" : p === "/" ? a === "/" : a.startsWith(p);
+        k.value = o(e.value.path, t.to);
       }
-    }, B = S();
-    _(B, (t) => {
-      k();
+    }, _ = N();
+    D(_, (e) => {
+      y();
     }, { flush: "pre", immediate: !0, deep: !0 });
-    const h = f(() => {
-      const t = [];
-      return e.imposter || t.push("lkt-anchor"), e.class && t.push(e.class), e.disabled && t.push("is-disabled"), e.to && (s.value && t.push("lkt-anchor-active"), m.value && t.push("lkt-anchor-active-parent")), e.isActive && !t.includes("lkt-anchor-active") && t.push("lkt-anchor-active"), t.join(" ");
-    }), y = f(() => {
-      let t = "";
-      return typeof e.to == "string" && (t = e.to), o.Mail === n.value ? `mailto:${t}` : o.Tel === n.value ? `tel:${t}` : [
-        o.Href,
-        o.Mail,
-        o.Tel,
-        o.Tab,
-        o.Download
-      ].includes(n.value) ? t : e.href !== "" ? e.href : typeof e.to == "string" && e.to !== "" ? e.to : "";
-    }), c = (t) => {
-      if (o.RouterLinkBack === n.value) {
-        t.preventDefault(), i.back();
+    const h = c(() => {
+      const e = [];
+      return t.imposter || e.push("lkt-anchor"), t.class && e.push(t.class), t.disabled && e.push("is-disabled"), t.to && (s.value && e.push("lkt-anchor-active"), k.value && e.push("lkt-anchor-active-parent")), t.isActive && !e.includes("lkt-anchor-active") && e.push("lkt-anchor-active"), e.join(" ");
+    }), g = c(() => v.value.getHref()), f = (e) => {
+      if (n.RouterLinkBack === t.type) {
+        e.preventDefault(), i.back();
         return;
       }
-      if (o.Action === n.value) {
-        if (typeof e.onClick == "function") {
-          let a = e.onClick(t);
-          if (!a)
-            return t.preventDefault(), a;
+      if (n.Action === t.type) {
+        if (typeof t.onClick == "function") {
+          let o = t.onClick(e);
+          if (!o)
+            return e.preventDefault(), o;
         }
         return;
       }
-      if (o.RouterLink === n.value) {
-        typeof e.to < "u" && (t.preventDefault(), i.push(e.to));
+      if (n.RouterLink === t.type) {
+        typeof t.to < "u" && (e.preventDefault(), i.push(t.to));
         return;
       }
       if ([
-        o.Href,
-        o.Mail,
-        o.Tel,
-        o.Tab,
-        o.Download
-      ].includes(n.value)) {
-        let a = e.to;
-        if (typeof a != "string" && (a = String(a)), a) return;
-        (!a || a === "#") && (t.preventDefault(), u("click", t));
+        n.Href,
+        n.Mail,
+        n.Tel,
+        n.Tab,
+        n.Download
+      ].includes(t.type)) {
+        let o = t.to;
+        if (typeof o != "string" && (o = String(o)), o) return;
+        (!o || o === "#") && (e.preventDefault(), u("click", e));
         return;
       }
-      if (e.isBack) {
-        t.preventDefault(), i.back();
-        return;
-      }
-      if (typeof e.onClick == "function") {
-        let a = e.onClick(t);
-        if (!a)
-          return t.preventDefault(), a;
-      }
-      if (!e.href) {
-        if ((!e.href || e.href === "#") && t.preventDefault(), !e.isVanilla && typeof e.to < "u") {
-          t.preventDefault(), i.push(e.to);
-          return;
-        }
-        if (!e.isVanilla && typeof e.route < "u") {
-          t.preventDefault(), i.push(e.to);
-          return;
-        }
-        u("click", t);
-      }
-    }, D = (t) => {
-      if (e.disabled)
-        return t.preventDefault(), t.stopPropagation(), !1;
-      if (e.confirmModal) {
-        let a = typeof e.confirmData == "object" ? JSON.parse(JSON.stringify(e.confirmData)) : {};
-        if (typeof a.onConfirm == "function") {
-          let r = a.onConfirm.bind({});
-          a.onConfirm = () => {
-            r(), c(t);
+      u("click", e);
+    }, C = (e) => {
+      if (t.disabled)
+        return e.preventDefault(), e.stopPropagation(), !1;
+      if (t.confirmModal) {
+        let o = typeof t.confirmData == "object" ? JSON.parse(JSON.stringify(t.confirmData)) : {};
+        if (typeof o.onConfirm == "function") {
+          let a = o.onConfirm.bind({});
+          o.onConfirm = () => {
+            a(), f(e);
           };
         } else
-          a.onConfirm = () => {
-            c(t);
+          o.onConfirm = () => {
+            f(e);
           };
-        return $(e.confirmModal, e.confirmModalKey, a);
+        return j(t.confirmModal, t.confirmModalKey, o);
       }
-      c(t);
+      f(e);
     };
-    H(() => {
-      (n.value === o.RouterLink || n.value === o.Legacy) && k();
+    F(() => {
+      (t.type === n.RouterLink || t.type === n.Legacy) && y();
     });
-    const w = f(() => o.Download === n.value || e.download), g = f(() => o.Tab === n.value ? "_blank" : e.target);
-    return (t, a) => w.value ? (C(), b("a", {
+    const B = c(() => n.Download === t.type), A = c(() => n.Tab === t.type ? "_blank" : "");
+    return (e, o) => B.value ? (R(), b("a", {
       key: 0,
       class: L(h.value),
-      href: y.value,
-      target: g.value,
-      download: t.downloadFileName,
-      onClick: D
+      href: g.value,
+      target: A.value,
+      download: e.downloadFileName,
+      onClick: C
     }, [
-      R(t.$slots, "default")
-    ], 10, A)) : (C(), b("a", {
+      w(e.$slots, "default")
+    ], 10, J)) : (R(), b("a", {
       key: 1,
       class: L(h.value),
-      href: y.value,
-      target: g.value,
-      onClick: D
+      href: g.value,
+      target: A.value,
+      onClick: C
     }, [
-      R(t.$slots, "default")
-    ], 10, F));
+      w(e.$slots, "default")
+    ], 10, K));
   }
-}), K = {
-  install: (l, v) => {
-    l.component("lkt-anchor") === void 0 && l.component("lkt-anchor", I), l.component("lkt-modal-confirm") === void 0 && l.use(V);
+}), W = {
+  install: (r, m) => {
+    r.component("lkt-anchor") === void 0 && r.component("lkt-anchor", O), r.component("lkt-modal-confirm") === void 0 && r.use(I);
   }
 };
 export {
-  o as AnchorType,
-  K as default
+  P as AnchorType,
+  W as default
 };
