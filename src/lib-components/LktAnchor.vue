@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {useRoute, useRouter} from "vue-router";
 import {computed, onMounted, ref, watch} from "vue";
-import {openConfirm} from "lkt-modal-confirm";
+import {openConfirm} from "lkt-modal";
 import {Anchor, AnchorConfig, AnchorType, getDefaultValues} from "lkt-vue-kernel";
 
 const props = withDefaults(defineProps<AnchorConfig>(), getDefaultValues(Anchor));
@@ -35,6 +35,7 @@ const checkIfActiveRoute = () => {
 
             return currentPath.startsWith(ownPath);
         }
+        //@ts-ignore
         routeIsActiveParent.value = validParentPath(currentRoute.value.path, props.to);
     }
 }
