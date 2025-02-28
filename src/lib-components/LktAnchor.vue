@@ -75,8 +75,8 @@ const internalClickEvent = (e: Event) => {
     }
 
     if (AnchorType.Action === props.type) {
-        if (typeof props.onClick === 'function') {
-            let clickResponse = props.onClick(e);
+        if (typeof props.events?.click === 'function') {
+            let clickResponse = props.events.click(e);
             if (!clickResponse) {
                 e.preventDefault();
                 return clickResponse;
@@ -116,7 +116,7 @@ const internalClickEvent = (e: Event) => {
 }
 
 
-const onClick = (e: Event) => {
+const doClick = (e: Event) => {
 
     if (props.disabled) {
         e.preventDefault();
@@ -162,18 +162,18 @@ const computedTarget = computed(() => {
 
 <template>
     <a v-if="computedHasDownload"
-       v-bind:class="classes"
-       v-bind:href="computedHref"
-       v-bind:target="computedTarget"
-       v-bind:download="downloadFileName"
-       v-on:click="onClick">
+       :class="classes"
+       :href="computedHref"
+       :target="computedTarget"
+       :download="downloadFileName"
+       @click="doClick">
         <slot/>
     </a>
     <a v-else
-       v-bind:class="classes"
-       v-bind:href="computedHref"
-       v-bind:target="computedTarget"
-       v-on:click="onClick">
+       :class="classes"
+       :href="computedHref"
+       :target="computedTarget"
+       @click="doClick">
         <slot/>
     </a>
 </template>

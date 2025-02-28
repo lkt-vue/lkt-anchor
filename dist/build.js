@@ -1,23 +1,23 @@
-import { defineComponent as j, mergeDefaults as V, ref as T, computed as i, useSlots as J, resolveComponent as P, createElementBlock as l, openBlock as n, normalizeStyle as W, normalizeClass as g, createElementVNode as b, withModifiers as K, createCommentVNode as s, unref as F, renderSlot as k, toDisplayString as q, createBlock as L, Fragment as z, renderList as R, normalizeProps as x, mergeProps as O, watch as $, onMounted as G } from "vue";
+import { defineComponent as j, mergeDefaults as V, ref as T, computed as a, useSlots as J, resolveComponent as P, createElementBlock as r, openBlock as l, normalizeStyle as W, normalizeClass as g, createElementVNode as b, withModifiers as K, createCommentVNode as u, unref as F, renderSlot as y, toDisplayString as q, createBlock as L, Fragment as z, renderList as R, normalizeProps as x, mergeProps as O, watch as $, onMounted as G } from "vue";
 import { useRouter as Q, useRoute as U } from "vue-router";
-import { ModalType as X, getDefaultValues as H, Modal as Y, Anchor as S, AnchorType as r } from "lkt-vue-kernel";
-import { AnchorType as Be } from "lkt-vue-kernel";
-const Z = (a, u = "_", e = {}) => {
+import { ModalType as X, getDefaultValues as H, Modal as Y, Anchor as S, AnchorType as i } from "lkt-vue-kernel";
+import { AnchorType as _e } from "lkt-vue-kernel";
+const Z = (c, f = "_", e = {}) => {
   {
     console.warn("ModalCanvas not defined");
     return;
   }
-}, I = (a, u = "_") => {
+}, I = (c, f = "_") => {
   {
     console.warn("ModalCanvas not defined");
     return;
   }
-}, E = (a, u = "_", e = {}) => {
-  let c = a;
-  typeof c == "string" && c.indexOf("confirm__") === 0 && (c = c.substring(9)), Z("confirm__" + c, u, e);
-}, ee = (a, u = "_") => {
-  let e = a;
-  typeof e == "string" && e.indexOf("confirm__") === 0 && (e = e.substring(9)), I("confirm__" + e, u);
+}, E = (c, f = "_", e = {}) => {
+  let s = c;
+  typeof s == "string" && s.indexOf("confirm__") === 0 && (s = s.substring(9)), Z("confirm__" + s, f, e);
+}, ee = (c, f = "_") => {
+  let e = c;
+  typeof e == "string" && e.indexOf("confirm__") === 0 && (e = e.substring(9)), I("confirm__" + e, f);
 }, te = {
   class: "lkt-modal-inner",
   ref: "inner"
@@ -41,7 +41,7 @@ const Z = (a, u = "_", e = {}) => {
   class: "lkt-modal-button-tray"
 };
 H(Y);
-const me = ["href", "target", "download"], pe = ["href", "target"], ye = /* @__PURE__ */ j({
+const me = ["href", "target", "download"], pe = ["href", "target"], ke = /* @__PURE__ */ j({
   __name: "LktAnchor",
   props: /* @__PURE__ */ V({
     type: {},
@@ -50,85 +50,87 @@ const me = ["href", "target", "download"], pe = ["href", "target"], ye = /* @__P
     isActive: { type: Boolean },
     downloadFileName: {},
     disabled: { type: Boolean },
-    onClick: { type: Function },
     confirmModal: { type: [String, Function] },
     confirmModalKey: { type: [String, Number, Function] },
     confirmData: {},
     imposter: { type: Boolean },
-    external: { type: Boolean }
+    external: { type: Boolean },
+    events: {},
+    onClick: { type: Function }
   }, H(S)),
   emits: ["click", "active"],
-  setup(a, { emit: u }) {
-    const e = a, c = T(new S(e));
-    $(e, (t) => c.value = new S(t));
-    const B = u, p = Q(), v = T(e.isActive), N = T(!1), m = T(e.type), D = () => {
-      if (![r.RouterLink, r.Legacy].includes(m.value)) return;
+  setup(c, { emit: f }) {
+    const e = c, s = T(new S(e));
+    $(e, (t) => s.value = new S(t));
+    const _ = f, p = Q(), v = T(e.isActive), N = T(!1), m = T(e.type), D = () => {
+      if (![i.RouterLink, i.Legacy].includes(m.value)) return;
       let t = p == null ? void 0 : p.currentRoute;
       if (t) {
-        v.value = t.value.path === e.to, B("active", v.value);
-        let o = (f, d) => d === "" ? f === "" : d === "/" ? f === "/" : f.startsWith(d);
-        N.value = o(t.value.path, e.to);
+        v.value = t.value.path === e.to, _("active", v.value);
+        let n = (o, d) => d === "" ? o === "" : d === "/" ? o === "/" : o.startsWith(d);
+        N.value = n(t.value.path, e.to);
       }
-    }, _ = U();
-    $(_, (t) => {
+    }, B = U();
+    $(B, (t) => {
       D();
     }, { flush: "pre", immediate: !0, deep: !0 });
-    const h = i(() => {
+    const h = a(() => {
       const t = [];
       return e.imposter || t.push("lkt-anchor"), e.class && t.push(e.class), e.disabled && t.push("is-disabled"), e.to && (v.value && t.push("lkt-anchor-active"), N.value && t.push("lkt-anchor-active-parent")), e.isActive && !t.includes("lkt-anchor-active") && t.push("lkt-anchor-active"), t.join(" ");
-    }), M = i(() => c.value.getHref()), y = (t) => {
-      if (r.RouterLinkBack === e.type) {
+    }), M = a(() => s.value.getHref()), k = (t) => {
+      var n;
+      if (i.RouterLinkBack === e.type) {
         t.preventDefault(), p.back();
         return;
       }
-      if (r.Action === e.type) {
-        if (typeof e.onClick == "function") {
-          let o = e.onClick(t);
+      if (i.Action === e.type) {
+        if (typeof ((n = e.events) == null ? void 0 : n.click) == "function") {
+          let o = e.events.click(t);
           if (!o)
             return t.preventDefault(), o;
         }
         return;
       }
-      if (r.RouterLink === e.type) {
+      if (i.RouterLink === e.type) {
         typeof e.to < "u" && (t.preventDefault(), p.push(e.to));
         return;
       }
       if ([
-        r.Href,
-        r.Mail,
-        r.Tel,
-        r.Tab,
-        r.Download
+        i.Href,
+        i.Mail,
+        i.Tel,
+        i.Tab,
+        i.Download
       ].includes(e.type)) {
         let o = e.to;
         if (typeof o != "string" && (o = String(o)), o) return;
-        (!o || o === "#") && (t.preventDefault(), B("click", t));
+        (!o || o === "#") && (t.preventDefault(), _("click", t));
         return;
       }
-      B("click", t);
+      _("click", t);
     }, C = (t) => {
       if (e.disabled)
         return t.preventDefault(), t.stopPropagation(), !1;
       if (e.confirmModal) {
-        let o = typeof e.confirmData == "object" ? JSON.parse(JSON.stringify(e.confirmData)) : {};
-        if (typeof o.onConfirm == "function") {
-          let f = o.onConfirm.bind({});
-          o.onConfirm = () => {
-            f(), y(t);
+        let n = typeof e.confirmData == "object" ? JSON.parse(JSON.stringify(e.confirmData)) : {};
+        if (typeof n.onConfirm == "function") {
+          let o = n.onConfirm.bind({});
+          n.onConfirm = () => {
+            o(), k(t);
           };
         } else
-          o.onConfirm = () => {
-            y(t);
+          n.onConfirm = () => {
+            k(t);
           };
-        return E(e.confirmModal, e.confirmModalKey, o);
+        return E(e.confirmModal, e.confirmModalKey, n);
       }
-      y(t);
+      k(t);
     };
     G(() => {
-      (e.type === r.RouterLink || e.type === r.Legacy) && D();
+      (e.type === i.RouterLink || e.type === i.Legacy) && D();
     });
-    const A = i(() => r.Download === e.type), w = i(() => r.Tab === e.type ? "_blank" : "");
-    return (t, o) => A.value ? (n(), l("a", {
+    const A = a(() => i.Download === e.type), w = a(() => i.Tab === e.type ? "_blank" : "");
+    return (t, n) => A.value ? (l(), r("a", {
       key: 0,
       class: g(h.value),
       href: M.value,
@@ -136,23 +138,23 @@ const me = ["href", "target", "download"], pe = ["href", "target"], ye = /* @__P
       download: t.downloadFileName,
       onClick: C
     }, [
-      k(t.$slots, "default")
-    ], 10, me)) : (n(), l("a", {
+      y(t.$slots, "default")
+    ], 10, me)) : (l(), r("a", {
       key: 1,
       class: g(h.value),
       href: M.value,
       target: w.value,
       onClick: C
     }, [
-      k(t.$slots, "default")
+      y(t.$slots, "default")
     ], 10, pe));
   }
 }), Ce = {
-  install: (a, u) => {
-    a.component("lkt-anchor") === void 0 && a.component("lkt-anchor", ye);
+  install: (c, f) => {
+    c.component("lkt-anchor") === void 0 && c.component("lkt-anchor", ke);
   }
 };
 export {
-  Be as AnchorType,
+  _e as AnchorType,
   Ce as default
 };
