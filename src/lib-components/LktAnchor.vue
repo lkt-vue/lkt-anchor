@@ -1,15 +1,17 @@
 <script lang="ts" setup>
 import {useRoute, useRouter} from "vue-router";
-import {computed, onMounted, ref, watch} from "vue";
+import {computed, onMounted, ref, useSlots, watch} from "vue";
 import {openConfirm} from "lkt-modal";
-import {Anchor, AnchorConfig, AnchorType, getDefaultValues} from "lkt-vue-kernel";
+import {Anchor, AnchorConfig, AnchorType, extractI18nValue, getAnchorHref, getDefaultValues} from "lkt-vue-kernel";
 
 const props = withDefaults(defineProps<AnchorConfig>(), getDefaultValues(Anchor));
 
-const instance = ref(new Anchor(props));
-watch(props, (v) => instance.value = new Anchor(v));
+const emit = defineEmits([
+    'click',
+    'active'
+]);
 
-const emit = defineEmits(['click', 'active']);
+const slots = useSlots();
 
 const router = useRouter();
 
@@ -63,7 +65,7 @@ const classes = computed(() => {
         return r.join(' ');
     }),
     computedHref = computed(() => {
-        return instance.value.getHref();
+        return getAnchorHref(props);
     });
 
 const internalClickEvent = (e: Event) => {
@@ -151,13 +153,15 @@ onMounted(() => {
 })
 
 const computedHasDownload = computed(() => {
-    return AnchorType.Download === props.type;
-});
-
-const computedTarget = computed(() => {
-    if (AnchorType.Tab === props.type) return '_blank';
-    return '';
-})
+        return AnchorType.Download === props.type;
+    }),
+    computedTarget = computed(() => {
+        if (AnchorType.Tab === props.type) return '_blank';
+        return '';
+    }),
+    computedText = computed(() => {
+        return extractI18nValue(props.text);
+    });
 </script>
 
 <template>
@@ -167,13 +171,25 @@ const computedTarget = computed(() => {
        :target="computedTarget"
        :download="downloadFileName"
        @click="doClick">
-        <slot/>
+        <template v-if="computedText">
+            {{ computedText }}
+        </template>
+
+        <template v-if="slots.default">
+            <slot/>
+        </template>
     </a>
     <a v-else
        :class="classes"
        :href="computedHref"
        :target="computedTarget"
        @click="doClick">
-        <slot/>
+        <template v-if="computedText">
+            {{ computedText }}
+        </template>
+
+        <template v-if="slots.default">
+            <slot/>
+        </template>
     </a>
 </template>

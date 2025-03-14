@@ -1,6 +1,6 @@
 {
   "name": "lkt-anchor",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "",
   "type": "module",
   "module": "./dist/build.js",
@@ -41,7 +41,8 @@
   },
   "peerDependencies": {
     "lkt-modal": "^2.0.3",
-    "lkt-vue-kernel": "^1.0.30",
+    "lkt-http-client": "^1.0.34",
+    "lkt-vue-kernel": "^1.0.45",
     "vue": "^3.4",
     "vue-router": "^4.2.5"
   }

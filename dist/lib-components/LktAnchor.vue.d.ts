@@ -1,8 +1,10 @@
 import { AnchorConfig, AnchorType } from "lkt-vue-kernel";
+declare const slots: Readonly<{
+    [name: string]: import("vue").Slot<any> | undefined;
+}>;
 declare const classes: import("vue").ComputedRef<string>, computedHref: import("vue").ComputedRef<string>;
 declare const doClick: (e: Event) => false | void;
-declare const computedHasDownload: import("vue").ComputedRef<boolean>;
-declare const computedTarget: import("vue").ComputedRef<"" | "_blank">;
+declare const computedHasDownload: import("vue").ComputedRef<boolean>, computedTarget: import("vue").ComputedRef<"" | "_blank">, computedText: import("vue").ComputedRef<any>;
 declare const __VLS_ctx: InstanceType<__VLS_PickNotAny<typeof __VLS_self, new () => {}>>;
 declare var __VLS_1: {}, __VLS_3: {};
 type __VLS_Slots = __VLS_PrettifyGlobal<__VLS_OmitStringIndex<typeof __VLS_ctx.$slots> & {
@@ -11,11 +13,13 @@ type __VLS_Slots = __VLS_PrettifyGlobal<__VLS_OmitStringIndex<typeof __VLS_ctx.$
     default?: (props: typeof __VLS_3) => any;
 }>;
 declare const __VLS_self: import("vue").DefineComponent<AnchorConfig, {
+    slots: typeof slots;
     classes: typeof classes;
     computedHref: typeof computedHref;
     doClick: typeof doClick;
     computedHasDownload: typeof computedHasDownload;
     computedTarget: typeof computedTarget;
+    computedText: typeof computedText;
 }, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     active: (...args: any[]) => void;
     click: (...args: any[]) => void;
@@ -24,6 +28,7 @@ declare const __VLS_self: import("vue").DefineComponent<AnchorConfig, {
     onClick?: ((...args: any[]) => any) | undefined;
 }>, {
     type: AnchorType;
+    text: string | number;
     disabled: boolean;
     external: boolean;
     class: string;
@@ -32,7 +37,7 @@ declare const __VLS_self: import("vue").DefineComponent<AnchorConfig, {
     isActive: boolean;
     downloadFileName: string;
     confirmModal: string | Function;
-    confirmModalKey: import("lkt-vue-kernel").ValidModalKey;
+    confirmModalKey: string | number | Function;
     confirmData: import("lkt-vue-kernel").ModalConfig;
     imposter: boolean;
     events: import("lkt-vue-kernel").EventsConfig;
@@ -45,6 +50,7 @@ declare const __VLS_component: import("vue").DefineComponent<AnchorConfig, {}, {
     onClick?: ((...args: any[]) => any) | undefined;
 }>, {
     type: AnchorType;
+    text: string | number;
     disabled: boolean;
     external: boolean;
     class: string;
@@ -53,7 +59,7 @@ declare const __VLS_component: import("vue").DefineComponent<AnchorConfig, {}, {
     isActive: boolean;
     downloadFileName: string;
     confirmModal: string | Function;
-    confirmModalKey: import("lkt-vue-kernel").ValidModalKey;
+    confirmModalKey: string | number | Function;
     confirmData: import("lkt-vue-kernel").ModalConfig;
     imposter: boolean;
     events: import("lkt-vue-kernel").EventsConfig;
