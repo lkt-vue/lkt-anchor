@@ -1,7 +1,7 @@
-import { defineComponent as V, mergeDefaults as $, ref as A, computed as s, useSlots as H, resolveComponent as P, createElementBlock as a, openBlock as r, normalizeStyle as W, normalizeClass as g, createElementVNode as C, withModifiers as q, createCommentVNode as i, unref as B, renderSlot as y, toDisplayString as I, createBlock as w, Fragment as F, renderList as K, normalizeProps as R, mergeProps as j, watch as G, onMounted as Q, createTextVNode as O } from "vue";
+import { defineComponent as O, mergeDefaults as V, ref as A, computed as s, useSlots as H, resolveComponent as P, createElementBlock as a, openBlock as r, normalizeStyle as W, normalizeClass as x, createElementVNode as _, withModifiers as q, createCommentVNode as i, unref as k, renderSlot as m, toDisplayString as I, createBlock as w, Fragment as F, renderList as K, normalizeProps as R, mergeProps as $, watch as G, onMounted as Q, createTextVNode as j } from "vue";
 import { useRouter as U, useRoute as X } from "vue-router";
 import { ModalType as Y, getDefaultValues as E, Modal as Z, getAnchorHref as ee, AnchorType as c, extractI18nValue as te, Anchor as oe } from "lkt-vue-kernel";
-import { AnchorType as De } from "lkt-vue-kernel";
+import { AnchorType as Ne } from "lkt-vue-kernel";
 const le = (u, f = "_", e = {}) => {
   {
     console.warn("ModalCanvas not defined");
@@ -41,9 +41,9 @@ const le = (u, f = "_", e = {}) => {
   class: "lkt-modal-button-tray"
 };
 E(Z);
-const ke = ["href", "target", "download"], he = ["href", "target"], be = /* @__PURE__ */ V({
+const ke = ["href", "target", "download"], he = ["href", "target"], be = /* @__PURE__ */ O({
   __name: "LktAnchor",
-  props: /* @__PURE__ */ $({
+  props: /* @__PURE__ */ V({
     type: {},
     to: {},
     class: {},
@@ -64,25 +64,25 @@ const ke = ["href", "target", "download"], he = ["href", "target"], be = /* @__P
     "active"
   ],
   setup(u, { emit: f }) {
-    const e = u, d = f, T = H(), p = U(), k = A(e.isActive), N = A(!1), m = A(e.type), D = () => {
-      if (![c.RouterLink, c.Legacy].includes(m.value)) return;
-      let t = p == null ? void 0 : p.currentRoute;
+    const e = u, d = f, h = H(), v = U(), b = A(e.isActive), N = A(!1), p = A(e.type), D = () => {
+      if (![c.RouterLink, c.Legacy].includes(p.value)) return;
+      let t = v == null ? void 0 : v.currentRoute;
       if (t) {
-        k.value = t.value.path === e.to, d("active", k.value);
+        b.value = t.value.path === e.to, d("active", b.value);
         let l = (n, S) => S === "" ? n === "" : S === "/" ? n === "/" : n.startsWith(S);
         N.value = l(t.value.path, e.to);
       }
-    }, _ = X();
-    G(_, (t) => {
+    }, T = X();
+    G(T, (t) => {
       D();
     }, { flush: "pre", immediate: !0, deep: !0 });
-    const h = s(() => {
+    const C = s(() => {
       const t = [];
-      return e.imposter || t.push("lkt-anchor"), e.class && t.push(e.class), e.disabled && t.push("is-disabled"), e.to && (k.value && t.push("lkt-anchor-active"), N.value && t.push("lkt-anchor-active-parent")), e.isActive && !t.includes("lkt-anchor-active") && t.push("lkt-anchor-active"), t.join(" ");
-    }), M = s(() => ee(e)), v = (t) => {
+      return e.imposter || t.push("lkt-anchor"), e.class && t.push(e.class), e.disabled && t.push("is-disabled"), e.to && (b.value && t.push("lkt-anchor-active"), N.value && t.push("lkt-anchor-active-parent")), e.isActive && !t.includes("lkt-anchor-active") && t.push("lkt-anchor-active"), t.join(" ");
+    }), g = s(() => ee(e)), y = (t) => {
       var l;
       if (c.RouterLinkBack === e.type) {
-        t.preventDefault(), p.back();
+        t.preventDefault(), v.back();
         return;
       }
       if (c.Action === e.type) {
@@ -94,7 +94,7 @@ const ke = ["href", "target", "download"], he = ["href", "target"], be = /* @__P
         return;
       }
       if (c.RouterLink === e.type) {
-        typeof e.to < "u" && (t.preventDefault(), p.push(e.to));
+        typeof e.to < "u" && (t.preventDefault(), v.push(e.to));
         return;
       }
       if ([
@@ -110,7 +110,7 @@ const ke = ["href", "target", "download"], he = ["href", "target"], be = /* @__P
         return;
       }
       d("click", t);
-    }, b = (t) => {
+    }, B = (t) => {
       if (e.disabled)
         return t.preventDefault(), t.stopPropagation(), !1;
       if (e.confirmModal) {
@@ -118,51 +118,59 @@ const ke = ["href", "target", "download"], he = ["href", "target"], be = /* @__P
         if (typeof l.onConfirm == "function") {
           let n = l.onConfirm.bind({});
           l.onConfirm = () => {
-            n(), v(t);
+            n(), y(t);
           };
         } else
           l.onConfirm = () => {
-            v(t);
+            y(t);
           };
         return J(e.confirmModal, e.confirmModalKey, l);
       }
-      v(t);
+      y(t);
     };
     Q(() => {
       (e.type === c.RouterLink || e.type === c.Legacy) && D();
     });
-    const L = s(() => c.Download === e.type), x = s(() => c.Tab === e.type ? "_blank" : ""), o = s(() => te(e.text));
+    const L = s(() => c.Download === e.type), M = s(() => c.Tab === e.type ? "_blank" : ""), o = s(() => (console.log("anchor computedText: ", e.text), te(e.text)));
     return (t, l) => L.value ? (r(), a("a", {
       key: 0,
-      class: g(h.value),
-      href: M.value,
-      target: x.value,
+      class: x(C.value),
+      href: g.value,
+      target: M.value,
       download: t.downloadFileName,
-      onClick: b
+      onClick: B
     }, [
-      o.value ? (r(), a(F, { key: 0 }, [
-        O(I(o.value), 1)
+      k(h).text ? m(t.$slots, "text", {
+        key: 0,
+        text: o.value,
+        href: g.value
+      }) : o.value ? (r(), a(F, { key: 1 }, [
+        j(I(o.value), 1)
       ], 64)) : i("", !0),
-      B(T).default ? y(t.$slots, "default", { key: 1 }) : i("", !0)
+      k(h).default ? m(t.$slots, "default", { key: 2 }) : i("", !0)
     ], 10, ke)) : (r(), a("a", {
       key: 1,
-      class: g(h.value),
-      href: M.value,
-      target: x.value,
-      onClick: b
+      class: x(C.value),
+      href: g.value,
+      target: M.value,
+      onClick: B
     }, [
-      o.value ? (r(), a(F, { key: 0 }, [
-        O(I(o.value), 1)
+      k(h).text ? m(t.$slots, "text", {
+        key: 0,
+        text: o.value,
+        href: g.value
+      }) : o.value ? (r(), a(F, { key: 1 }, [
+        j(I(o.value), 1)
       ], 64)) : i("", !0),
-      B(T).default ? y(t.$slots, "default", { key: 1 }) : i("", !0)
+      k(h).default ? m(t.$slots, "default", { key: 2 }) : i("", !0)
     ], 10, he));
   }
-}), Be = {
+}), _e = {
   install: (u, f) => {
     u.component("lkt-anchor") === void 0 && u.component("lkt-anchor", be);
   }
 };
 export {
-  De as AnchorType,
-  Be as default
+  Ne as AnchorType,
+  _e as default
 };

@@ -171,7 +171,14 @@ const computedHasDownload = computed(() => {
        :target="computedTarget"
        :download="downloadFileName"
        @click="doClick">
-        <template v-if="computedText">
+        <template v-if="slots.text">
+            <slot
+                name="text"
+                :text="computedText"
+                :href="computedHref"
+            />
+        </template>
+        <template v-else-if="computedText">
             {{ computedText }}
         </template>
 
@@ -184,7 +191,14 @@ const computedHasDownload = computed(() => {
        :href="computedHref"
        :target="computedTarget"
        @click="doClick">
-        <template v-if="computedText">
+        <template v-if="slots.text">
+            <slot
+                name="text"
+                :text="computedText"
+                :href="computedHref"
+            />
+        </template>
+        <template v-else-if="computedText">
             {{ computedText }}
         </template>
 

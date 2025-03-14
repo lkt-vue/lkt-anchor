@@ -6,11 +6,21 @@ declare const classes: import("vue").ComputedRef<string>, computedHref: import("
 declare const doClick: (e: Event) => false | void;
 declare const computedHasDownload: import("vue").ComputedRef<boolean>, computedTarget: import("vue").ComputedRef<"" | "_blank">, computedText: import("vue").ComputedRef<any>;
 declare const __VLS_ctx: InstanceType<__VLS_PickNotAny<typeof __VLS_self, new () => {}>>;
-declare var __VLS_1: {}, __VLS_3: {};
+declare var __VLS_1: {
+    text: any;
+    href: string;
+}, __VLS_3: {}, __VLS_5: {
+    text: any;
+    href: string;
+}, __VLS_7: {};
 type __VLS_Slots = __VLS_PrettifyGlobal<__VLS_OmitStringIndex<typeof __VLS_ctx.$slots> & {
-    default?: (props: typeof __VLS_1) => any;
+    text?: (props: typeof __VLS_1) => any;
 } & {
     default?: (props: typeof __VLS_3) => any;
+} & {
+    text?: (props: typeof __VLS_5) => any;
+} & {
+    default?: (props: typeof __VLS_7) => any;
 }>;
 declare const __VLS_self: import("vue").DefineComponent<AnchorConfig, {
     slots: typeof slots;
