@@ -1,4 +1,4 @@
-import { defineComponent as O, mergeDefaults as V, ref as A, computed as s, useSlots as H, resolveComponent as P, createElementBlock as a, openBlock as r, normalizeStyle as W, normalizeClass as x, createElementVNode as _, withModifiers as q, createCommentVNode as i, unref as k, renderSlot as m, toDisplayString as I, createBlock as w, Fragment as F, renderList as K, normalizeProps as R, mergeProps as $, watch as G, onMounted as Q, createTextVNode as j } from "vue";
+import { defineComponent as O, mergeDefaults as V, ref as A, computed as s, useSlots as H, resolveComponent as P, createElementBlock as a, openBlock as r, normalizeStyle as W, normalizeClass as T, createElementVNode as _, withModifiers as q, createCommentVNode as i, unref as k, renderSlot as m, toDisplayString as I, createBlock as w, Fragment as F, renderList as K, normalizeProps as R, mergeProps as $, watch as G, onMounted as Q, createTextVNode as j } from "vue";
 import { useRouter as U, useRoute as X } from "vue-router";
 import { ModalType as Y, getDefaultValues as E, Modal as Z, getAnchorHref as ee, AnchorType as c, extractI18nValue as te, Anchor as oe } from "lkt-vue-kernel";
 import { AnchorType as Ne } from "lkt-vue-kernel";
@@ -72,8 +72,8 @@ const ke = ["href", "target", "download"], he = ["href", "target"], be = /* @__P
         let l = (n, S) => S === "" ? n === "" : S === "/" ? n === "/" : n.startsWith(S);
         N.value = l(t.value.path, e.to);
       }
-    }, T = X();
-    G(T, (t) => {
+    }, x = X();
+    G(x, (t) => {
       D();
     }, { flush: "pre", immediate: !0, deep: !0 });
     const C = s(() => {
@@ -131,10 +131,10 @@ const ke = ["href", "target", "download"], he = ["href", "target"], be = /* @__P
     Q(() => {
       (e.type === c.RouterLink || e.type === c.Legacy) && D();
     });
-    const L = s(() => c.Download === e.type), M = s(() => c.Tab === e.type ? "_blank" : ""), o = s(() => (console.log("anchor computedText: ", e.text), te(e.text)));
+    const L = s(() => c.Download === e.type), M = s(() => c.Tab === e.type ? "_blank" : ""), o = s(() => te(e.text));
     return (t, l) => L.value ? (r(), a("a", {
       key: 0,
-      class: x(C.value),
+      class: T(C.value),
       href: g.value,
       target: M.value,
       download: t.downloadFileName,
@@ -150,7 +150,7 @@ const ke = ["href", "target", "download"], he = ["href", "target"], be = /* @__P
       k(h).default ? m(t.$slots, "default", { key: 2 }) : i("", !0)
     ], 10, ke)) : (r(), a("a", {
       key: 1,
-      class: x(C.value),
+      class: T(C.value),
       href: g.value,
       target: M.value,
       onClick: B

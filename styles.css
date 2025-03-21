@@ -1,6 +1,6 @@
 .lkt-anchor {
-    display: inline-flex;
-    position: relative;
+    display: var(--lkt-anchor-display);
+    position: var(--lkt-anchor-position);
     align-items: var(--lkt-anchor-align-items);
     justify-content: var(--lkt-anchor-justify-content);
     gap: var(--lkt-anchor-gap);
@@ -28,8 +28,8 @@
 }
 
 .lkt-anchor img {
-    max-width: var(--lkt-anchor-img-max-width);
-    max-height: var(--lkt-anchor-img-max-height);
+    max-width: var(--lkt-anchor--img--max-width);
+    max-height: var(--lkt-anchor--img--max-height);
 }
 
 .lkt-anchor.is-disabled {

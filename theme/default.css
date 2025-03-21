@@ -1,4 +1,5 @@
-:root {
+.lkt-anchor {
+    --lkt-anchor-display: inline-flex;
     --lkt-anchor-align-items: center;
     --lkt-anchor-justify-content: center;
     --lkt-anchor-text-align: center;
@@ -16,14 +17,15 @@
     --lkt-anchor-text-decoration-active: underline;
     --lkt-anchor-text-decoration-hover: underline;
     --lkt-anchor-text-decoration-disabled: none;
-    --lkt-anchor-text-decoration-disabled-hover: none;
+    --lkt-anchor-text-decoration-disabled-hover: var(--lkt-anchor-text-decoration-disabled);
     --lkt-anchor-transition: all linear 100ms;
     --lkt-anchor-width: auto;
     --lkt-anchor-height: auto;
 
-    --lkt-anchor-img-max-width: 50px;
-    --lkt-anchor-img-max-height: 50px;
+    --lkt-anchor--img--max-width: 50px;
+    --lkt-anchor--img--max-height: 50px;
 
     --lkt-anchor-gap: 7px;
     --lkt-anchor-padding: 0;
+    --lkt-anchor-position: relative;
 }
