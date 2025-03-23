@@ -33,7 +33,7 @@
     --lkt-anchor--hover--color: #007ebc;
     --lkt-anchor--hover--text-decoration: underline;
 
-
+    /** Element: Image */
     --lkt-anchor--img--max-width: 50px;
     --lkt-anchor--img--max-height: 50px;
 }
