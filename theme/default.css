@@ -1,29 +1,38 @@
 .lkt-anchor {
-    --lkt-anchor--display: inline-flex;
     --lkt-anchor--align-items: center;
-    --lkt-anchor--justify-content: center;
-    --lkt-anchor--text-align: center;
     --lkt-anchor--color: #444444;
-    --lkt-anchor--active--color: #007ebc;
-    --lkt-anchor--hover--color: #007ebc;
-    --lkt-anchor--disabled--color: #cccccc;
-    --lkt-anchor--disabled--hover--color: #cccccc;
+    --lkt-anchor--display: inline-flex;
     --lkt-anchor--font-family: system-ui, Helvetica;
     --lkt-anchor--font-size: 16px;
     --lkt-anchor--font-weight: 400;
+    --lkt-anchor--gap: 7px;
+    --lkt-anchor--height: auto;
+    --lkt-anchor--justify-content: center;
     --lkt-anchor--letter-spacing: 0;
     --lkt-anchor--line-height: 1.425;
+    --lkt-anchor--text-align: center;
     --lkt-anchor--text-decoration: underline;
-    --lkt-anchor--active--text-decoration: underline;
-    --lkt-anchor--hover--text-decoration: underline;
-    --lkt-anchor--disabled--text-decoration: none;
-    --lkt-anchor--disabled--hover--text-decoration: var(--lkt-anchor--disabled--text-decoration);
     --lkt-anchor--transition: all linear 100ms;
-    --lkt-anchor--width: auto;
-    --lkt-anchor--height: auto;
-    --lkt-anchor--gap: 7px;
     --lkt-anchor--padding: 0;
     --lkt-anchor--position: relative;
+    --lkt-anchor--width: auto;
+
+    /** State: Disabled */
+    --lkt-anchor--disabled--color: #cccccc;
+    --lkt-anchor--disabled--text-decoration: none;
+
+    /** State: Disabled, Event: Hover */
+    --lkt-anchor--disabled--hover--color: #cccccc;
+    --lkt-anchor--disabled--hover--text-decoration: var(--lkt-anchor--disabled--text-decoration);
+
+    /** State: Active */
+    --lkt-anchor--active--color: #007ebc;
+    --lkt-anchor--active--text-decoration: underline;
+
+    /** Event: Hover */
+    --lkt-anchor--hover--color: #007ebc;
+    --lkt-anchor--hover--text-decoration: underline;
+
 
     --lkt-anchor--img--max-width: 50px;
     --lkt-anchor--img--max-height: 50px;
