@@ -19,6 +19,10 @@ const routeIsActive = ref(props.isActive),
     routeIsActiveParent = ref(false),
     typeValue = ref(props.type);
 
+const doConfigClick = () => {
+    if (typeof props.events?.click === 'function') props.events.click();
+}
+
 const checkIfActiveRoute = () => {
     if (![AnchorType.RouterLink, AnchorType.Legacy].includes(typeValue.value)) return;
     let currentRoute = router?.currentRoute;
@@ -69,6 +73,8 @@ const classes = computed(() => {
     });
 
 const internalClickEvent = (e: Event) => {
+
+    doConfigClick();
 
     if (AnchorType.RouterLinkBack === props.type) {
         e.preventDefault();
