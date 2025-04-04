@@ -19,8 +19,8 @@ const routeIsActive = ref(props.isActive),
     routeIsActiveParent = ref(false),
     typeValue = ref(props.type);
 
-const doConfigClick = () => {
-    if (typeof props.events?.click === 'function') props.events.click();
+const doConfigClick = (e: Event) => {
+    if (typeof props.events?.click === 'function') props.events.click(e);
 }
 
 const checkIfActiveRoute = () => {
@@ -74,7 +74,7 @@ const classes = computed(() => {
 
 const internalClickEvent = (e: Event) => {
 
-    doConfigClick();
+    doConfigClick(e);
 
     if (AnchorType.RouterLinkBack === props.type) {
         e.preventDefault();
@@ -83,13 +83,15 @@ const internalClickEvent = (e: Event) => {
     }
 
     if (AnchorType.Action === props.type) {
-        if (typeof props.events?.click === 'function') {
-            let clickResponse = props.events.click(e);
-            if (!clickResponse) {
-                e.preventDefault();
-                return clickResponse;
-            }
-        }
+        e.preventDefault();
+        // if (typeof props.events?.click === 'function') {
+        //     let clickResponse = props.events.click(e);
+        //     if (!clickResponse) {
+        //         e.preventDefault();
+        //         return clickResponse;
+        //     }
+        // }
+        emit('click', e);
         return;
     }
 
