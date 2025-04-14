@@ -179,6 +179,9 @@ const computedHasDownload = computed(() => {
        :target="computedTarget"
        :download="downloadFileName"
        @click="doClick">
+        <i v-if="typeof icon === 'string' && icon !== ''" :class="icon" />
+        <lkt-icon v-else-if="typeof icon === 'object' && Object.keys(icon).length > 0" v-bind="icon"/>
+
         <template v-if="slots.text">
             <slot
                 name="text"
@@ -199,6 +202,9 @@ const computedHasDownload = computed(() => {
        :href="computedHref"
        :target="computedTarget"
        @click="doClick">
+        <i v-if="typeof icon === 'string' && icon !== ''" :class="icon" />
+        <lkt-icon v-else-if="typeof icon === 'object' && Object.keys(icon).length > 0" v-bind="icon"/>
+
         <template v-if="slots.text">
             <slot
                 name="text"
