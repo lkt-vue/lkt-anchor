@@ -2,7 +2,15 @@
 import {useRoute, useRouter} from "vue-router";
 import {computed, onMounted, ref, useSlots, watch} from "vue";
 import {openConfirm} from "lkt-modal";
-import {Anchor, AnchorConfig, AnchorType, extractI18nValue, getAnchorHref, getDefaultValues} from "lkt-vue-kernel";
+import {
+    Anchor,
+    AnchorConfig,
+    AnchorType,
+    extractI18nValue,
+    extractPropValue,
+    getAnchorHref,
+    getDefaultValues
+} from "lkt-vue-kernel";
 
 const props = withDefaults(defineProps<AnchorConfig>(), getDefaultValues(Anchor));
 
@@ -19,6 +27,12 @@ const routeIsActive = ref(props.isActive),
     routeIsActiveParent = ref(false),
     typeValue = ref(props.type);
 
+const computedTo = computed(() => {
+    if (typeof props.to === 'function') return props.to(props.prop);
+    if (typeof props.to === 'string') return extractPropValue(props.to, props.prop);
+    return props.to;
+})
+
 const doConfigClick = (e: Event) => {
     if (typeof props.events?.click === 'function') props.events.click(e);
 }
@@ -27,7 +41,7 @@ const checkIfActiveRoute = () => {
     if (![AnchorType.RouterLink, AnchorType.Legacy].includes(typeValue.value)) return;
     let currentRoute = router?.currentRoute;
     if (currentRoute) {
-        routeIsActive.value = currentRoute.value.path === props.to;
+        routeIsActive.value = currentRoute.value.path === computedTo.value;
         emit('active', routeIsActive.value);
 
         let validParentPath = (currentPath: string, ownPath: string) => {
@@ -42,7 +56,7 @@ const checkIfActiveRoute = () => {
             return currentPath.startsWith(ownPath);
         }
         //@ts-ignore
-        routeIsActiveParent.value = validParentPath(currentRoute.value.path, props.to);
+        routeIsActiveParent.value = validParentPath(currentRoute.value.path, computedTo.value);
     }
 }
 
@@ -59,7 +73,7 @@ const classes = computed(() => {
         if (props.class) r.push(props.class);
         if (props.disabled) r.push('is-disabled');
 
-        if (props.to) {
+        if (computedTo.value) {
             if (routeIsActive.value) r.push('lkt-anchor-active');
             if (routeIsActiveParent.value) r.push('lkt-anchor-active-parent');
         }
@@ -84,21 +98,14 @@ const internalClickEvent = (e: Event) => {
 
     if (AnchorType.Action === props.type) {
         e.preventDefault();
-        // if (typeof props.events?.click === 'function') {
-        //     let clickResponse = props.events.click(e);
-        //     if (!clickResponse) {
-        //         e.preventDefault();
-        //         return clickResponse;
-        //     }
-        // }
         emit('click', e);
         return;
     }
 
     if (AnchorType.RouterLink === props.type) {
-        if (typeof props.to !== 'undefined') {
+        if (typeof computedTo.value !== 'undefined') {
             e.preventDefault();
-            router.push(props.to);
+            router.push(computedTo.value);
         }
         return;
     }
@@ -110,7 +117,7 @@ const internalClickEvent = (e: Event) => {
         AnchorType.Tab,
         AnchorType.Download,
     ].includes(props.type)) {
-        let href = props.to;
+        let href = computedTo.value;
         if (typeof href !== 'string') href = String(href);
 
         if (href) return;

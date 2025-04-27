@@ -1,5 +1,5 @@
-import { AnchorType as Me } from "lkt-vue-kernel";
-declare namespace Ne {
-    function install(d: any, f: any): void;
+import { AnchorType as $e } from "lkt-vue-kernel";
+declare namespace Ke {
+    function install(u: any, p: any): void;
 }
-export { Me as AnchorType, Ne as default };
+export { $e as AnchorType, Ke as default };
