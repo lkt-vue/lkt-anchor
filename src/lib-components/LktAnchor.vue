@@ -30,7 +30,10 @@ const routeIsActive = ref(props.isActive),
 const computedTo = computed(() => {
     if (typeof props.to === 'function') return props.to(props.prop);
     if (typeof props.to === 'string') return extractPropValue(props.to, props.prop);
-    return props.to;
+    return {
+        ...props.to,
+        path: extractPropValue(props.to.path, props.prop),
+    }
 })
 
 const doConfigClick = (e: Event) => {
@@ -118,6 +121,7 @@ const internalClickEvent = (e: Event) => {
         AnchorType.Download,
     ].includes(props.type)) {
         let href = computedTo.value;
+        if (typeof href === 'object') href = String(href.path);
         if (typeof href !== 'string') href = String(href);
 
         if (href) return;
