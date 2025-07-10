@@ -1,19 +1,19 @@
-import { AnchorConfig, AnchorType } from "lkt-vue-kernel";
-declare var __VLS_5: {
+import { AnchorConfig, AnchorType, IconConfig } from "lkt-vue-kernel";
+declare var __VLS_9: {
     text: any;
     href: string;
-}, __VLS_7: {}, __VLS_13: {
+}, __VLS_11: {}, __VLS_21: {
     text: any;
     href: string;
-}, __VLS_15: {};
+}, __VLS_23: {};
 type __VLS_Slots = {} & {
-    text?: (props: typeof __VLS_5) => any;
+    text?: (props: typeof __VLS_9) => any;
 } & {
-    default?: (props: typeof __VLS_7) => any;
+    default?: (props: typeof __VLS_11) => any;
 } & {
-    text?: (props: typeof __VLS_13) => any;
+    text?: (props: typeof __VLS_21) => any;
 } & {
-    default?: (props: typeof __VLS_15) => any;
+    default?: (props: typeof __VLS_23) => any;
 };
 declare const __VLS_component: import("vue").DefineComponent<AnchorConfig, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     active: (...args: any[]) => void;
@@ -28,7 +28,7 @@ declare const __VLS_component: import("vue").DefineComponent<AnchorConfig, {}, {
     external: boolean;
     class: string;
     to: string | import("lkt-vue-kernel").RouteConfig | ((data: import("lkt-vue-kernel").LktObject) => import("lkt-vue-kernel").RouteConfig | string);
-    icon: import("lkt-vue-kernel").IconConfig | string;
+    icon: IconConfig | string;
     onClick: Function;
     isActive: boolean;
     prop: import("lkt-vue-kernel").LktObject;

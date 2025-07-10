@@ -9,7 +9,7 @@ import {
     extractI18nValue,
     extractPropValue,
     getAnchorHref,
-    getDefaultValues
+    getDefaultValues, IconConfig
 } from "lkt-vue-kernel";
 
 const props = withDefaults(defineProps<AnchorConfig>(), getDefaultValues(Anchor));
@@ -190,7 +190,7 @@ const computedHasDownload = computed(() => {
        :target="computedTarget"
        :download="downloadFileName"
        @click="doClick">
-        <i v-if="typeof icon === 'string' && icon !== ''" :class="icon" />
+        <lkt-icon v-if="typeof icon === 'string' && icon !== ''" v-bind="<IconConfig>{icon: icon}"/>
         <lkt-icon v-else-if="typeof icon === 'object' && Object.keys(icon).length > 0" v-bind="icon"/>
 
         <template v-if="slots.text">
@@ -213,7 +213,7 @@ const computedHasDownload = computed(() => {
        :href="computedHref"
        :target="computedTarget"
        @click="doClick">
-        <i v-if="typeof icon === 'string' && icon !== ''" :class="icon" />
+        <lkt-icon v-if="typeof icon === 'string' && icon !== ''" v-bind="<IconConfig>{icon: icon}"/>
         <lkt-icon v-else-if="typeof icon === 'object' && Object.keys(icon).length > 0" v-bind="icon"/>
 
         <template v-if="slots.text">
