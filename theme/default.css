@@ -1,7 +1,9 @@
 .lkt-anchor {
     --lkt-anchor--align-items: center;
+    --lkt-anchor--background: transparent;
     --lkt-anchor--color: #444444;
     --lkt-anchor--display: inline-flex;
+    --lkt-anchor--flex-direction: row;
     --lkt-anchor--font-family: system-ui, Helvetica;
     --lkt-anchor--font-size: 16px;
     --lkt-anchor--font-weight: 400;
@@ -18,18 +20,28 @@
     --lkt-anchor--width: auto;
 
     /** State: Disabled */
+    --lkt-anchor--disabled--background: transparent;
     --lkt-anchor--disabled--color: #cccccc;
     --lkt-anchor--disabled--text-decoration: none;
 
     /** State: Disabled, Event: Hover */
+    /** State: Disabled */
+    --lkt-anchor--disabled--hover--background: transparent;
     --lkt-anchor--disabled--hover--color: #cccccc;
     --lkt-anchor--disabled--hover--text-decoration: var(--lkt-anchor--disabled--text-decoration);
 
     /** State: Active */
+    --lkt-anchor--active--background: transparent;
     --lkt-anchor--active--color: #007ebc;
     --lkt-anchor--active--text-decoration: underline;
 
+    /** State: Active, Event: Hover */
+    --lkt-anchor--active--hover--background: transparent;
+    --lkt-anchor--active--hover--color: #007ebc;
+    --lkt-anchor--active--hover--text-decoration: underline;
+
     /** Event: Hover */
+    --lkt-anchor--hover--background: transparent;
     --lkt-anchor--hover--color: #007ebc;
     --lkt-anchor--hover--text-decoration: underline;
 

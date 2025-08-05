@@ -1,8 +1,10 @@
 .lkt-anchor {
+    background: var(--lkt-anchor--background);
     display: var(--lkt-anchor--display);
     position: var(--lkt-anchor--position);
     align-items: var(--lkt-anchor--align-items);
     justify-content: var(--lkt-anchor--justify-content);
+    flex-direction: var(--lkt-anchor--flex-direction);
     gap: var(--lkt-anchor--gap);
     color: var(--lkt-anchor--color);
     font-family: var(--lkt-anchor--font-family), serif;
@@ -18,13 +20,21 @@
 }
 
 .lkt-anchor-active {
+    background: var(--lkt-anchor--active--background);
     color: var(--lkt-anchor--active--color);
     text-decoration: var(--lkt-anchor--active--text-decoration);
 }
 
 .lkt-anchor:hover {
+    background: var(--lkt-anchor--hover--background);
     color: var(--lkt-anchor--hover--color);
     text-decoration: var(--lkt-anchor--hover--text-decoration);
+}
+
+.lkt-anchor-active:hover {
+    background: var(--lkt-anchor--active--hover--background);
+    color: var(--lkt-anchor--active--hover--color);
+    text-decoration: var(--lkt-anchor--active--hover--text-decoration);
 }
 
 .lkt-anchor img {
@@ -33,12 +43,14 @@
 }
 
 .lkt-anchor.is-disabled {
+    background: var(--lkt-anchor--disabled--background);
     cursor: text;
     color: var(--lkt-anchor--disabled--color);
     text-decoration: var(--lkt-anchor--disabled--text-decoration);
 }
 
 .lkt-anchor.is-disabled:hover {
+    background: var(--lkt-anchor--disabled--hover--background);
     color: var(--lkt-anchor--disabled--hover--color);
     text-decoration: var(--lkt-anchor--disabled--hover--text-decoration);
 }
