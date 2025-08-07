@@ -22,6 +22,7 @@
 .lkt-anchor-active {
     background: var(--lkt-anchor--active--background);
     color: var(--lkt-anchor--active--color);
+    font-weight: var(--lkt-anchor--active--font-weight);
     text-decoration: var(--lkt-anchor--active--text-decoration);
 }
 

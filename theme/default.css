@@ -33,6 +33,7 @@
     /** State: Active */
     --lkt-anchor--active--background: transparent;
     --lkt-anchor--active--color: #007ebc;
+    --lkt-anchor--active--font-weight: 400;
     --lkt-anchor--active--text-decoration: underline;
 
     /** State: Active, Event: Hover */
