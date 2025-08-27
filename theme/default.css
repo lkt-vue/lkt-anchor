@@ -1,6 +1,7 @@
 .lkt-anchor {
     --lkt-anchor--align-items: center;
     --lkt-anchor--background: transparent;
+    --lkt-anchor--border-radius: 0;
     --lkt-anchor--color: #444444;
     --lkt-anchor--display: inline-flex;
     --lkt-anchor--flex-direction: row;

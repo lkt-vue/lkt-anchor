@@ -1,4 +1,5 @@
 .lkt-anchor {
+    border-radius: var(--lkt-anchor--border-radius);
     background: var(--lkt-anchor--background);
     display: var(--lkt-anchor--display);
     position: var(--lkt-anchor--position);
