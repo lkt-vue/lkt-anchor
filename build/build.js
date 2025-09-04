@@ -1,26 +1,26 @@
-import { defineComponent as P, mergeDefaults as J, ref as I, computed as c, useSlots as U, resolveComponent as W, createElementBlock as a, openBlock as l, normalizeStyle as Q, normalizeClass as M, createElementVNode as A, withModifiers as X, createCommentVNode as i, unref as v, createVNode as Y, normalizeProps as b, guardReactiveProps as Z, withCtx as ee, renderSlot as p, toDisplayString as V, createBlock as C, Fragment as L, renderList as x, mergeProps as S, watch as te, onMounted as oe, createTextVNode as H } from "vue";
+import { defineComponent as E, mergeDefaults as P, ref as I, computed as c, useSlots as J, resolveComponent as U, createElementBlock as a, openBlock as l, normalizeStyle as G, normalizeClass as M, createElementVNode as A, withModifiers as Q, createCommentVNode as i, unref as v, createVNode as X, normalizeProps as b, guardReactiveProps as Y, withCtx as Z, renderSlot as p, toDisplayString as R, createBlock as C, Fragment as V, renderList as x, mergeProps as S, watch as ee, onMounted as te, createTextVNode as oe } from "vue";
 import { useRouter as ne, useRoute as le } from "vue-router";
-import { ModalController as O, ModalType as ae, ButtonType as ie, getDefaultValues as q, Modal as re, extractPropValue as E, getAnchorHref as ce, AnchorType as u, extractI18nValue as se, Anchor as ue } from "lkt-vue-kernel";
-import { AnchorType as Oe } from "lkt-vue-kernel";
+import { ModalController as L, ModalType as ae, ButtonType as ie, getDefaultValues as W, Modal as re, extractPropValue as H, getAnchorHref as ce, AnchorType as u, extractI18nValue as se, Anchor as ue } from "lkt-vue-kernel";
+import { AnchorType as $e } from "lkt-vue-kernel";
 const de = (s, f = "_", e = {}) => {
-  if (!O.canvas) {
+  if (!L.canvas) {
     console.warn("ModalCanvas not defined");
     return;
   }
-  O.open({
+  L.open({
     modalName: s,
     modalKey: f
   }, e, !0);
 }, z = (s, f = "_") => {
-  if (!O.canvas) {
+  if (!L.canvas) {
     console.warn("ModalCanvas not defined");
     return;
   }
-  O.close({
+  L.close({
     modalName: s,
     modalKey: f
   });
-}, G = (s, f = "_", e = {}) => {
+}, q = (s, f = "_", e = {}) => {
   let d = s;
   typeof d == "string" && d.indexOf("confirm__") === 0 && (d = d.substring(9)), de("confirm__" + d, f, e);
 }, fe = (s, f = "_") => {
@@ -51,10 +51,13 @@ const de = (s, f = "_", e = {}) => {
   key: 2,
   class: "lkt-modal-button-tray"
 };
-q(re);
-const Me = ["href", "target", "download"], Se = ["href", "target"], we = /* @__PURE__ */ P({
+W(re);
+const Me = ["href", "target", "download"], Se = ["href", "target"], we = {
+  key: 3,
+  class: "lkt-anchor--label"
+}, De = /* @__PURE__ */ E({
   __name: "LktAnchor",
-  props: /* @__PURE__ */ J({
+  props: /* @__PURE__ */ P({
     type: {},
     to: { type: [Object, String, Function] },
     class: {},
@@ -71,15 +74,15 @@ const Me = ["href", "target", "download"], Se = ["href", "target"], we = /* @__P
     events: {},
     prop: {},
     onClick: { type: Function }
-  }, q(ue)),
+  }, W(ue)),
   emits: [
     "click",
     "active"
   ],
   setup(s, { emit: f }) {
-    const e = s, d = f, g = U(), k = ne(), B = I(e.isActive), D = I(!1), m = I(e.type), y = c(() => typeof e.to == "function" ? e.to(e.prop) : typeof e.to == "string" ? E(e.to, e.prop) : {
+    const e = s, d = f, g = J(), k = ne(), B = I(e.isActive), D = I(!1), m = I(e.type), y = c(() => typeof e.to == "function" ? e.to(e.prop) : typeof e.to == "string" ? H(e.to, e.prop) : {
       ...e.to,
-      path: E(e.to.path, e.prop)
+      path: H(e.to.path, e.prop)
     }), F = (t) => {
       var n;
       typeof ((n = e.events) == null ? void 0 : n.click) == "function" && e.events.click(t);
@@ -88,11 +91,11 @@ const Me = ["href", "target", "download"], Se = ["href", "target"], we = /* @__P
       let t = k == null ? void 0 : k.currentRoute;
       if (t) {
         B.value = t.value.path === y.value, d("active", B.value);
-        let n = (r, R) => R === "" ? r === "" : R === "/" ? r === "/" : r.startsWith(R);
+        let n = (r, $) => $ === "" ? r === "" : $ === "/" ? r === "/" : r.startsWith($);
         D.value = n(t.value.path, y.value);
       }
     }, w = le();
-    te(w, (t) => {
+    ee(w, (t) => {
       j();
     }, { flush: "pre", immediate: !0, deep: !0 });
     const T = c(() => {
@@ -138,17 +141,17 @@ const Me = ["href", "target", "download"], Se = ["href", "target"], we = /* @__P
           n.onConfirm = () => {
             h(t);
           };
-        return G(e.confirmModal, e.confirmModalKey, n);
+        return q(e.confirmModal, e.confirmModalKey, n);
       }
       h(t);
     };
-    oe(() => {
+    te(() => {
       (e.type === u.RouterLink || e.type === u.Legacy) && j();
     });
-    const $ = c(() => u.Download === e.type), K = c(() => u.Tab === e.type ? "_blank" : ""), o = c(() => se(e.text));
+    const O = c(() => u.Download === e.type), K = c(() => u.Tab === e.type ? "_blank" : ""), o = c(() => se(e.text));
     return (t, n) => {
-      const r = W("lkt-icon");
-      return $.value ? (l(), a("a", {
+      const r = U("lkt-icon");
+      return O.value ? (l(), a("a", {
         key: 0,
         class: M(T.value),
         href: N.value,
@@ -161,8 +164,8 @@ const Me = ["href", "target", "download"], Se = ["href", "target"], we = /* @__P
           key: 2,
           text: o.value,
           href: N.value
-        }) : o.value ? (l(), a(L, { key: 3 }, [
-          H(V(o.value), 1)
+        }) : o.value ? (l(), a(V, { key: 3 }, [
+          oe(R(o.value), 1)
         ], 64)) : i("", !0),
         v(g).default ? p(t.$slots, "default", { key: 4 }) : i("", !0)
       ], 10, Me)) : (l(), a("a", {
@@ -177,19 +180,17 @@ const Me = ["href", "target", "download"], Se = ["href", "target"], we = /* @__P
           key: 2,
           text: o.value,
           href: N.value
-        }) : o.value ? (l(), a(L, { key: 3 }, [
-          H(V(o.value), 1)
-        ], 64)) : i("", !0),
+        }) : o.value ? (l(), a("span", we, R(o.value), 1)) : i("", !0),
         v(g).default ? p(t.$slots, "default", { key: 4 }) : i("", !0)
       ], 10, Se));
     };
   }
-}), Ke = {
+}), Ie = {
   install: (s, f) => {
-    s.component("lkt-anchor") === void 0 && s.component("lkt-anchor", we);
+    s.component("lkt-anchor") === void 0 && s.component("lkt-anchor", De);
   }
 };
 export {
-  Oe as AnchorType,
-  Ke as default
+  $e as AnchorType,
+  Ie as default
 };

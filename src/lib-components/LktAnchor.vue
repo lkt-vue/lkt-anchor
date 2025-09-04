@@ -223,9 +223,9 @@ const computedHasDownload = computed(() => {
                 :href="computedHref"
             />
         </template>
-        <template v-else-if="computedText">
+        <span v-else-if="computedText" class="lkt-anchor--label">
             {{ computedText }}
-        </template>
+        </span>
 
         <template v-if="slots.default">
             <slot/>
