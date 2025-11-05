@@ -30,9 +30,16 @@ const routeIsActive = ref(props.isActive),
 const computedTo = computed(() => {
     if (typeof props.to === 'function') return props.to(props.prop);
     if (typeof props.to === 'string') return extractPropValue(props.to, props.prop);
+
+    let path = props.to.path;
+    if (!path && props.to.name) {
+        let cfg = router.getRoutes().find((z) => z.name === props.to.name);
+        if (cfg) path = cfg.path;
+    }
+
     return {
         ...props.to,
-        path: extractPropValue(props.to.path, props.prop),
+        path: extractPropValue(path, props.prop),
     }
 })
 
@@ -44,7 +51,9 @@ const checkIfActiveRoute = () => {
     if (![AnchorType.RouterLink, AnchorType.Legacy].includes(typeValue.value)) return;
     let currentRoute = router?.currentRoute;
     if (currentRoute) {
-        routeIsActive.value = currentRoute.value.path === computedTo.value;
+        routeIsActive.value = typeof computedTo.value === 'object'
+            ? currentRoute.value.path === computedTo.value.path
+            : currentRoute.value.path === computedTo.value;
         emit('active', routeIsActive.value);
 
         let validParentPath = (currentPath: string, ownPath: string) => {

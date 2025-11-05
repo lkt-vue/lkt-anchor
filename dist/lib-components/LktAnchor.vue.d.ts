@@ -32,7 +32,7 @@ declare const __VLS_component: import("vue").DefineComponent<AnchorConfig, {}, {
     onClick: Function;
     isActive: boolean;
     prop: import("lkt-vue-kernel").LktObject;
-    events: import("lkt-vue-kernel").EventsConfig;
+    events: import("lkt-vue-kernel").AnchorEvents;
     downloadFileName: string;
     confirmModal: string | Function;
     confirmModalKey: string | number | Function;
