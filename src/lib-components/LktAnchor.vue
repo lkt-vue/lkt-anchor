@@ -9,7 +9,7 @@ import {
     extractI18nValue,
     extractPropValue,
     getAnchorHref,
-    getDefaultValues, IconConfig
+    getDefaultValues, IconConfig, IconPosition
 } from "lkt-vue-kernel";
 
 const props = withDefaults(defineProps<AnchorConfig>(), getDefaultValues(Anchor));
@@ -28,20 +28,75 @@ const routeIsActive = ref(props.isActive),
     typeValue = ref(props.type);
 
 const computedTo = computed(() => {
-    if (typeof props.to === 'function') return props.to(props.prop);
-    if (typeof props.to === 'string') return extractPropValue(props.to, props.prop);
+        if (typeof props.to === 'function') return props.to(props.prop);
+        if (typeof props.to === 'string') return extractPropValue(props.to, props.prop);
 
-    let path = props.to.path;
-    if (!path && props.to.name) {
-        let cfg = router.getRoutes().find((z) => z.name === props.to.name);
-        if (cfg) path = cfg.path;
-    }
+        let path = props.to.path;
+        if (!path && props.to.name) {
+            let cfg = router.getRoutes().find((z) => z.name === props.to.name);
+            if (cfg) path = cfg.path;
+        }
 
-    return {
-        ...props.to,
-        path: extractPropValue(path, props.prop),
-    }
-})
+        return {
+            ...props.to,
+            path: extractPropValue(path, props.prop),
+        }
+    }),
+    computedIcon = computed((): IconConfig => {
+        let cfg = props.icon;
+        return extractPropValue(cfg, props.prop) as unknown as IconConfig;
+    }),
+    computedIconEnd = computed(() => {
+        if (typeof computedIcon.value === 'object' && computedIcon.value.position === IconPosition.End) {
+            return computedIcon.value;
+        }
+        return undefined;
+
+        // let cfg = props.iconEnd;
+        // return extractPropValue(cfg, props.prop);
+    }),
+    computedIconDotText = computed(() => {
+        if (typeof computedIcon.value.dot === 'boolean') return '';
+        return computedIcon.value.dot;
+    }),
+    computedIconConfig = computed((): Partial<IconConfig> => {
+        if (typeof computedIcon.value === 'string') {
+            return <IconConfig>{
+                icon: computedIcon.value,
+                dot: computedIconDotText.value
+            };
+        }
+
+        if (typeof computedIcon.value === 'object' && computedIcon.value.position !== IconPosition.End) {
+            return <IconConfig>computedIcon.value;
+        }
+
+        return {};
+    }),
+    computedIconEndConfig = computed((): Partial<IconConfig> => {
+        if (typeof computedIconEnd.value === 'string' && computedIconEnd.value !== '') {
+            return <IconConfig>{
+                icon: computedIconEnd.value,
+                class: 'lkt-anchor-icon-end'
+            };
+        }
+
+        if (typeof computedIconEnd.value === 'object' && Object.keys(computedIconEnd.value).length > 0) {
+            return <IconConfig>{
+                ...computedIconEnd.value,
+                class: 'lkt-anchor-icon-end'
+            };
+        }
+
+        if (typeof computedIcon.value === 'object' && computedIcon.value.position === IconPosition.End) {
+            return <IconConfig>{
+                ...computedIcon.value,
+                class: 'lkt-anchor-icon-end'
+            };
+        }
+
+        return {};
+    })
 
 const doConfigClick = (e: Event) => {
     if (typeof props.events?.click === 'function') props.events.click(e);
@@ -199,8 +254,7 @@ const computedHasDownload = computed(() => {
        :target="computedTarget"
        :download="downloadFileName"
        @click="doClick">
-        <lkt-icon v-if="typeof icon === 'string' && icon !== ''" v-bind="<IconConfig>{icon: icon}"/>
-        <lkt-icon v-else-if="typeof icon === 'object' && Object.keys(icon).length > 0" v-bind="icon"/>
+        <lkt-icon v-if="computedIcon" v-bind="computedIconConfig"/>
 
         <template v-if="slots.text">
             <slot
@@ -216,14 +270,14 @@ const computedHasDownload = computed(() => {
         <template v-if="slots.default">
             <slot/>
         </template>
+        <lkt-icon v-if="computedIconEnd" v-bind="computedIconEndConfig"/>
     </a>
     <a v-else
        :class="classes"
        :href="computedHref"
        :target="computedTarget"
        @click="doClick">
-        <lkt-icon v-if="typeof icon === 'string' && icon !== ''" v-bind="<IconConfig>{icon: icon}"/>
-        <lkt-icon v-else-if="typeof icon === 'object' && Object.keys(icon).length > 0" v-bind="icon"/>
+        <lkt-icon v-if="computedIcon" v-bind="computedIconConfig"/>
 
         <template v-if="slots.text">
             <slot
@@ -239,5 +293,6 @@ const computedHasDownload = computed(() => {
         <template v-if="slots.default">
             <slot/>
         </template>
+        <lkt-icon v-if="computedIconEnd" v-bind="computedIconEndConfig"/>
     </a>
 </template>

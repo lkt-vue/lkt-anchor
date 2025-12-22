@@ -1,19 +1,19 @@
 import { AnchorConfig, AnchorType, IconConfig } from "lkt-vue-kernel";
-declare var __VLS_9: {
+declare var __VLS_5: {
     text: any;
     href: string;
-}, __VLS_11: {}, __VLS_21: {
+}, __VLS_7: {}, __VLS_17: {
     text: any;
     href: string;
-}, __VLS_23: {};
+}, __VLS_19: {};
 type __VLS_Slots = {} & {
-    text?: (props: typeof __VLS_9) => any;
+    text?: (props: typeof __VLS_5) => any;
 } & {
-    default?: (props: typeof __VLS_11) => any;
+    default?: (props: typeof __VLS_7) => any;
 } & {
-    text?: (props: typeof __VLS_21) => any;
+    text?: (props: typeof __VLS_17) => any;
 } & {
-    default?: (props: typeof __VLS_23) => any;
+    default?: (props: typeof __VLS_19) => any;
 };
 declare const __VLS_component: import("vue").DefineComponent<AnchorConfig, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     active: (...args: any[]) => void;
