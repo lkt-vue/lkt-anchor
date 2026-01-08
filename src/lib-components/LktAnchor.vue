@@ -177,6 +177,14 @@ const internalClickEvent = (e: Event) => {
         return;
     }
 
+    if (AnchorType.RouterLinkReplace === props.type) {
+        if (typeof computedTo.value !== 'undefined') {
+            e.preventDefault();
+            router.replace(computedTo.value);
+        }
+        return;
+    }
+
     if ([
         AnchorType.Href,
         AnchorType.Mail,
